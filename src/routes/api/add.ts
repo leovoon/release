@@ -4,15 +4,15 @@ import { prisma } from '$lib/db/client';
 
 export const post: RequestHandler = async ({ request }) => {
 	let body = {};
-	const text = (await request.formData()).get('text')?.toString();
-	const type = (await request.formData()).get('mood')?.toString();
-	if (text && type)
-		body = await prisma.release.create({
-			data: {
-				text,
-				type
-			}
-		});
+	const form = await request.formData();
+	const { text, mood } = Object.fromEntries(form);
+
+	body = await prisma.release.create({
+		data: {
+			text,
+			mood
+		}
+	});
 	return {
 		status: 201,
 		body

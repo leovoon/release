@@ -17,6 +17,6 @@ model Release {
     id        Int       @id @default(autoincrement())
     createdAt DateTime? @default(now())
     text      String    @db.VarChar(2000)
-    type      String
+    mood      String    @db.VarChar(255)
 
 }
