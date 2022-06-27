@@ -13,6 +13,14 @@ export const post: RequestHandler = async ({ request }) => {
 			mood
 		}
 	});
+
+	if (!body) {
+		return {
+			status: 404,
+			error: 'Error'
+		};
+	}
+
 	return {
 		status: 201,
 		body

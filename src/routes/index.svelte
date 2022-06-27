@@ -1,8 +1,11 @@
+<script lang="ts">
+</script>
+
 <h1 class="text-center w-full mb-4 ">Release <sup>beta 0.0.1</sup></h1>
 
 <div class="flex flex-col gap-4">
-	<a href="/compose" class="btn-blue"> I hate it when</a>
-	<a href="/compose" class="btn-red">I am happy that</a>
+	<a href="/compose?m=happy" class="btn-blue"> I hate it when</a>
+	<a href="/compose?m=hate" class="btn-red">I am happy that</a>
 </div>
 
-<button class="btn-light">view history</button>
+<a href="/history" class="btn-light">view history</a>

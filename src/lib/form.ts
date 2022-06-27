@@ -2,13 +2,37 @@ import { invalidate } from '$app/navigation';
 
 type Parameters = {
 	pending?: ({ data, form }: { data: FormData; form: HTMLFormElement }) => void;
-	result?: ({ data, form, response }: { data: FormData; response: Response; form: HTMLFormElement }) => void;
-	error?: ({ data, form, response, error }: { data: FormData; form: HTMLFormElement; response: Response | null; error: Error | null }) => void;
+	result?: ({
+		data,
+		form,
+		response
+	}: {
+		data: FormData;
+		response: Response;
+		form: HTMLFormElement;
+	}) => void;
+	error?: ({
+		data,
+		form,
+		response,
+		error
+	}: {
+		data: FormData;
+		form: HTMLFormElement;
+		response: Response | null;
+		error: Error | null;
+	}) => void;
 };
 type Destroy = { destroy: () => void };
-type Enhance = (form: HTMLFormElement, { result, pending, error }?: Parameters) => Destroy;
+type Enhance = (
+	form: HTMLFormElement,
+	{ result, pending, error }?: Parameters
+) => Destroy;
 
-export const enhance: Enhance = (form, { pending, error, result } = {}): Destroy => {
+export const enhance: Enhance = (
+	form,
+	{ pending, error, result } = {}
+): Destroy => {
 	let current_token;
 
 	async function handle_submit(e: Event) {
