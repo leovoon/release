@@ -1,0 +1,43 @@
+/* Write your global styles here, in PostCSS syntax */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	ol {
+		@apply list-decimal flex flex-col gap-6 overflow-scroll;
+	}
+	textarea {
+		@apply p-4 border-2 border-gray-400 border-dotted w-full opacity-80;
+	}
+	footer {
+		@apply mt-4 text-center text-sm w-full p-2 text-gray-500;
+	}
+}
+
+@layer components {
+	.btn-blue {
+		@apply rounded font-bold bg-blue-500 text-white py-2 px-4 transition-colors ease-out duration-300 hover:bg-blue-700;
+	}
+
+	.btn-red {
+		@apply rounded font-bold bg-red-500 text-white py-2 px-4 transition-colors ease-out duration-300 hover:bg-red-700;
+	}
+
+	.btn-light {
+		@apply bg-transparent text-sm text-center py-2 px-4 transition-colors transition-transform ease-out text-gray-400 duration-500 hover:text-black hover:rotate-3 transform;
+	}
+	.happy {
+		@apply text-blue-500;
+	}
+	.hate {
+		@apply text-red-400;
+	}
+	.big-text {
+		@apply absolute inset-0 font-bold text-6xl sm:text-8xl leading-10 opacity-30 w-8 -z-10 w-full flex justify-center items-center break-all overflow-hidden;
+		writing-mode: vertical-rl;
+	}
+	.preview {
+		@apply opacity-50  border-2  rounded p-4 mb-4 h-20;
+	}
+}
