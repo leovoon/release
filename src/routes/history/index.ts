@@ -20,10 +20,7 @@ export const get: RequestHandler = async () => {
 
 	return {
 		status: 200,
-		body: { textList },
-		headers: {
-			'cache-control': 'max-age=3600'
-		}
+		body: { textList }
 	};
 };
 
@@ -42,9 +39,6 @@ export const post: RequestHandler = async ({ url }) => {
 
 	return {
 		status: 200,
-		body: { nextList },
-		headers: {
-			'cache-control': 'max-age=3600'
-		}
+		body: { nextList }
 	};
 };
