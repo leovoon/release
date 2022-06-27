@@ -6,4 +6,6 @@
 	<slot />
 </main>
 
-<footer>made with ❤️ by leovoon for her</footer>
+<footer>
+	made with ❤️ by <a href="https://github.com/leovoon/release">leovoon</a>
+</footer>

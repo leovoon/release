@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Release } from '@prisma/client';
 	import { enhance } from '$lib/form';
+	import { fly } from 'svelte/transition';
 	export let textList: Release[] = [];
 	let defaultListCount = 3;
 	let nextList: Release[] = [];
@@ -17,13 +18,19 @@
 	$: updatedlistLen = updatedList.length;
 </script>
 
-Total: {updatedlistLen}
+<b class="mb-5">Total: {updatedlistLen}</b>
 {#if updatedList.length > 0}
 	<ol>
 		{#each updatedList as { text, mood }}
-			<li class:happy={mood === 'happy'} class:hate={mood === 'hate'}>
-				{text} <sub class="uppercase">{mood}</sub>
-			</li>
+			{#key text}
+				<li
+					in:fly={{ y: -50, duration: 250, delay: 200 }}
+					class:happy={mood === 'happy'}
+					class:hate={mood === 'hate'}
+				>
+					{text} <sub class="uppercase">{mood}</sub>
+				</li>
+			{/key}
 		{/each}
 	</ol>
 	<form
@@ -47,7 +54,7 @@ Total: {updatedlistLen}
 		}}
 	>
 		{#if !allLoaded}
-			<button type="submit" class="btn-light">view all</button>
+			<button type="submit" class="btn-light mt-4">view all</button>
 		{/if}
 	</form>
 {:else}
@@ -55,9 +62,11 @@ Total: {updatedlistLen}
 {/if}
 
 {#if pending}
-	<p>fetching...</p>
+	<p class="mt-10">fetching...</p>
 {/if}
 
 {#if error}
 	<p>Something went wrong..</p>
 {/if}
+
+<a href="/" class="btn-gray"> back </a>

@@ -2,6 +2,7 @@
 	import { enhance } from '$lib/form';
 	import { onMount } from 'svelte';
 	import { clean } from '$lib/profane';
+	import { fade } from 'svelte/transition';
 	export let mood: string;
 	let error: Error | null;
 	let posting: Boolean;
@@ -18,7 +19,8 @@
 <div class="big-text">{mood === 'hate' ? '正能量' : '负能量'}</div>
 
 {#if !empty}
-	<input
+	<textarea
+		transition:fade
 		class="preview"
 		type="text"
 		class:bg-red-300={mood === 'hate'}
@@ -49,7 +51,7 @@
 		required
 		bind:value={textSubmit}
 	/>
-	<button type="submit" class="btn-light place-self-end">Release</button>
+	<button type="submit" class="btn-light place-self-end">📥 Release</button>
 </form>
 
 {#if error}
@@ -59,3 +61,5 @@
 {/if}
 
 {saved}
+
+<a href="/history" class="btn-gray">view saved</a>
