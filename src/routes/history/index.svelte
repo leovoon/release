@@ -72,7 +72,7 @@
 {/if}
 
 {#if pending}
-	<p class="mt-10">fetching...</p>
+	<p class="mt-10 text-center">loading...</p>
 {/if}
 
 {#if error}

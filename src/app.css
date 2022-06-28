@@ -5,16 +5,23 @@
 
 @layer base {
 	main {
-		@apply p-4;
+		@apply p-4 w-full h-screen grid place-content-center;
 	}
 	ol {
-		@apply list-decimal flex flex-col gap-6 overflow-scroll;
+		@apply flex flex-col list-decimal gap-6 overflow-scroll;
+	}
+
+	li {
+		@apply hover:bg-gray-100 px-1 cursor-default select-none;
 	}
 	textarea {
-		@apply p-4 border-2 border-gray-400 border-dotted w-full opacity-80;
+		@apply border-dotted border-2 border-gray-400 w-full opacity-80 p-4;
+	}
+	span {
+		@apply inline-flex;
 	}
 	footer {
-		@apply mt-4 text-center text-sm w-full p-2 text-gray-500;
+		@apply my-4 text-center text-sm w-full p-2 text-gray-500;
 	}
 }
 
@@ -28,10 +35,10 @@
 	}
 
 	.btn-light {
-		@apply bg-transparent mt-4 text-sm text-center py-2 px-4 transition-colors transition-transform ease-out text-gray-400 duration-500 hover:text-black hover:rotate-3 transform;
+		@apply bg-transparent mt-4 text-sm text-center py-2 px-4 transform transition-colors transition-transform ease-out text-gray-400 duration-500 hover:text-black hover:scale-110 hover:rotate-3 hover:-translate-y-1;
 	}
 	.btn-gray {
-		@apply mt-16 w-[80vw] text-center border-2 hover:bg-gray-600 transition-colors border-dotted text-white bg-gray-500 opacity-80 rounded;
+		@apply overflow-auto transition-all duration-300 border-dotted rounded justify-self-center bg-gray-500 border-2 mt-16 text-center text-white opacity-80 transition-colors w-[80vw] hover:bg-gray-600;
 	}
 	.happy {
 		@apply text-blue-500;
@@ -44,6 +51,6 @@
 		writing-mode: vertical-rl;
 	}
 	.preview {
-		@apply opacity-50  border-2 font-semibold rounded p-4 mb-4 overflow-scroll;
+		@apply rounded  font-semibold border-2 mb-4 opacity-50 p-4 overflow-scroll;
 	}
 }

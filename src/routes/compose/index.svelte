@@ -19,6 +19,7 @@
 <div class="big-text">{mood === 'happy' ? '正能量' : '负能量'}</div>
 
 {#if !empty}
+	<sub class="-mb-4 p-2 opacity-40 justify-self-end">preview</sub>
 	<textarea
 		in:fade
 		class="preview"
@@ -52,7 +53,7 @@
 		required
 		bind:value={textSubmit}
 	/>
-	<button type="submit" class="btn-light place-self-end">📥 Release</button>
+	<button type="submit" class="btn-light place-self-end"> 📥 Release</button>
 </form>
 
 {#if error}

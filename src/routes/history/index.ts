@@ -20,7 +20,10 @@ export const get: RequestHandler = async () => {
 
 	return {
 		status: 200,
-		body: { textList }
+		body: { textList },
+		headers: {
+			'cache-control': 's-maxage-1, stale-while-revalidate=5'
+		}
 	};
 };
 
@@ -39,6 +42,9 @@ export const post: RequestHandler = async ({ url }) => {
 
 	return {
 		status: 200,
-		body: { nextList }
+		body: { nextList },
+		headers: {
+			'cache-control': 's-maxage-1, stale-while-revalidate=5'
+		}
 	};
 };
