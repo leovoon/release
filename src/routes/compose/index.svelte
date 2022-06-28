@@ -16,7 +16,7 @@
 	onMount(() => (saved = ''));
 </script>
 
-<div class="big-text">{mood === 'hate' ? '正能量' : '负能量'}</div>
+<div class="big-text">{mood === 'happy' ? '正能量' : '负能量'}</div>
 
 {#if !empty}
 	<textarea
