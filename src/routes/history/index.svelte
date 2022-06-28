@@ -62,7 +62,9 @@
 		}}
 	>
 		{#if !allLoaded}
-			<button type="submit" class="btn-light mt-4">view all</button>
+			<button type="submit" class="btn-light mt-4 w-full text-center"
+				>view all</button
+			>
 		{/if}
 	</form>
 {:else}
