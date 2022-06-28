@@ -20,10 +20,11 @@
 
 {#if !empty}
 	<textarea
-		transition:fade
+		in:fade
 		class="preview"
 		type="text"
 		class:bg-red-300={mood === 'hate'}
+		class:bg-blue-300={mood === 'happy'}
 		bind:value={textPreview}
 	/>
 {/if}
