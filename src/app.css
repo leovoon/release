@@ -31,7 +31,7 @@
 		@apply bg-transparent mt-4 text-sm text-center py-2 px-4 transition-colors transition-transform ease-out text-gray-400 duration-500 hover:text-black hover:rotate-3 transform;
 	}
 	.btn-gray {
-		@apply mt-16 text-center border-2 hover:bg-gray-600 transition-colors border-dotted text-white bg-gray-500 opacity-80 rounded;
+		@apply mt-16 w-[80vw] text-center border-2 hover:bg-gray-600 transition-colors border-dotted text-white bg-gray-500 opacity-80 rounded;
 	}
 	.happy {
 		@apply text-blue-500;

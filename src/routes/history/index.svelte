@@ -79,4 +79,4 @@
 	<p>Something went wrong..</p>
 {/if}
 
-<a href="/" class="btn-gray"> back </a>
+<a href="/" class="btn-gray "> ↩️ back </a>
