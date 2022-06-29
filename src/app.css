@@ -26,6 +26,10 @@
 }
 
 @layer components {
+	.btn-login {
+		@apply rounded font-bold bg-gray-400 text-white py-2 px-4 transition-colors ease-out duration-300 hover:bg-gray-500;
+	}
+
 	.btn-blue {
 		@apply rounded font-bold bg-blue-500 text-white py-2 px-4 transition-colors ease-out duration-300 hover:bg-blue-700;
 	}
