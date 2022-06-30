@@ -17,60 +17,63 @@
 		: (updatedList = textList);
 
 	$: updatedlistLen = updatedList.length;
+	$: countIsSame = updatedList.length === defaultListCount;
 </script>
 
-<b class="mb-5 h-10"
-	>Total: {#key updatedList}<span
-			class="h-max inline-flex"
-			in:fly={{ y: -30, duration: 500, delay: 200 }}
-		>
-			{updatedlistLen}
-		</span>{/key}</b
->
-{#if updatedList.length > 0}
-	<ol>
-		{#each updatedList as { text, mood }, i}
-			{#key text}
-				<li
-					in:fly={{ x: -50, duration: 250, delay: i * 200 }}
-					class:happy={mood === 'happy'}
-					class:hate={mood === 'hate'}
-				>
-					{clean(text)} <sub class="uppercase">{mood}</sub>
-				</li>
-			{/key}
-		{/each}
-	</ol>
-	<form
-		action={`/history?q=${textToGrab}`}
-		method="post"
-		use:enhance={{
-			result: async ({ response: res }) => {
-				let data = await res.json();
-				nextList = data['nextList'];
-				pending = false;
-				allLoaded = true;
-			},
-			pending: () => {
-				if (updatedlistLen > defaultListCount) {
-					pending = false;
-				} else {
-					pending = true;
-				}
-			},
-			error: ({ error }) => (error = error)
-		}}
-	>
-		{#if !allLoaded}
-			<button type="submit" class="btn-light mt-4 w-full text-center"
-				>view all</button
+<section class="bg-cyan-50 p-2 grid gap-2 border border-dotted border-gray-300">
+	<b class="my-2 h-10"
+		>Total: {#key updatedList}<span
+				class="h-max inline-flex"
+				in:fly={{ y: -30, duration: 500, delay: 200 }}
 			>
-		{/if}
-	</form>
-{:else}
-	<p>Nothing found in the database</p>
-{/if}
-
+				{updatedlistLen}
+			</span>{/key}</b
+	>
+	{#if updatedList.length > 0}
+		<ol>
+			{#each updatedList as { text, mood }, i}
+				{#key text}
+					<li
+						in:fly={{ x: countIsSame ? 0 : -50, duration: 250, delay: i * 200 }}
+						class:happy={mood === 'happy'}
+						class:hate={mood === 'hate'}
+					>
+						{clean(text)}
+						<sub class="uppercase">{mood === 'happy' ? '🥰' : '🔥'}</sub>
+					</li>
+				{/key}
+			{/each}
+		</ol>
+		<form
+			action={`/history?q=${textToGrab}`}
+			method="post"
+			use:enhance={{
+				result: async ({ response: res }) => {
+					let data = await res.json();
+					nextList = data['nextList'];
+					pending = false;
+					allLoaded = true;
+				},
+				pending: () => {
+					if (updatedlistLen > defaultListCount) {
+						pending = false;
+					} else {
+						pending = true;
+					}
+				},
+				error: ({ error }) => (error = error)
+			}}
+		>
+			{#if !allLoaded}
+				<button type="submit" class="btn-light mt-4 w-full text-center"
+					>view all</button
+				>
+			{/if}
+		</form>
+	{:else}
+		<p>Nothing found in the database</p>
+	{/if}
+</section>
 {#if pending}
 	<p class="mt-10 text-center">loading...</p>
 {/if}

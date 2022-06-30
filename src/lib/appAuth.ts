@@ -1,7 +1,7 @@
 import { SvelteKitAuth } from 'sk-auth';
 import {
 	//   TwitchOAuth2Provider,
-	//   FacebookOAuth2Provider,
+	FacebookOAuth2Provider,
 	GoogleOAuth2Provider
 	//   RedditOAuth2Provider,
 	//   TwitterAuthProvider,
@@ -16,7 +16,7 @@ export const appAuth = new SvelteKitAuth({
 			profile(profile) {
 				return { ...profile, provider: 'google' };
 			}
-		})
+		}),
 		// new TwitchOAuth2Provider({
 		// 	clientId: import.meta.env.VITE_TWITCH_OAUTH_CLIENT_ID,
 		// 	clientSecret: import.meta.env.VITE_TWITCH_OAUTH_CLIENT_SECRET,
@@ -24,13 +24,13 @@ export const appAuth = new SvelteKitAuth({
 		// 		return { ...profile, provider: 'twitch' };
 		// 	}
 		// }),
-		// new FacebookOAuth2Provider({
-		// 	clientId: import.meta.env.VITE_FACEBOOK_OAUTH_CLIENT_ID,
-		// 	clientSecret: import.meta.env.VITE_FACEBOOK_OAUTH_CLIENT_SECRET,
-		// 	profile(profile) {
-		// 		return { ...profile, provider: 'facebook' };
-		// 	}
-		// }),
+		new FacebookOAuth2Provider({
+			clientId: import.meta.env.VITE_FACEBOOK_OAUTH_CLIENT_ID,
+			clientSecret: import.meta.env.VITE_FACEBOOK_OAUTH_CLIENT_SECRET,
+			profile(profile) {
+				return { ...profile, provider: 'facebook' };
+			}
+		})
 		// new TwitterAuthProvider({
 		// 	apiKey: import.meta.env.VITE_TWITTER_API_KEY,
 		// 	apiSecret: import.meta.env.VITE_TWITTER_API_SECRET,

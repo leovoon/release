@@ -1,11 +1,11 @@
-<script lang="ts">
-</script>
+<header>
+	<h1 class="text-xl grid place-items-center w-full mb-4 ">
+		Release <sup class="m-4 text-red-300">beta 0.0.3</sup>
+	</h1>
+</header>
 
-<h1 class="text-center w-full mb-4 ">Release <sup>beta 0.0.1</sup></h1>
-
-<div class="flex flex-col gap-4">
-	<a href="/compose?m=hate" class="btn-blue"> I hate it when</a>
-	<a href="/compose?m=happy" class="btn-red">I am happy that</a>
+<div class="flex flex-col gap-4 ">
+	<a href="/compose?m=hate" class="btn-blue"> I hate it when 🔥</a>
+	<a href="/compose?m=happy" class="btn-red">I am happy that 💚</a>
+	<a href="/history" class="btn-light">view history</a>
 </div>
-
-<a href="/history" class="btn-light">view history</a>

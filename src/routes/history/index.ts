@@ -1,7 +1,18 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { prisma } from '$lib/db/client';
 
-export const get: RequestHandler = async () => {
+export const get: RequestHandler = async ({ locals }) => {
+	const isLoggedIn = locals.user;
+
+	if (!isLoggedIn) {
+		return {
+			status: 303,
+			headers: {
+				location: '/login'
+			}
+		};
+	}
+
 	const textList = await prisma.release.findMany({
 		take: 3,
 		orderBy: [

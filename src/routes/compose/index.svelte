@@ -19,15 +19,10 @@
 <div class="big-text">{mood === 'happy' ? '正能量' : '负能量'}</div>
 
 {#if !empty}
-	<sub class="-mb-4 p-2 opacity-40 justify-self-end">preview</sub>
-	<textarea
-		in:fade
-		class="preview"
-		type="text"
-		class:bg-red-300={mood === 'hate'}
-		class:bg-blue-300={mood === 'happy'}
-		bind:value={textPreview}
-	/>
+	<section>
+		<p class="p-2 opacity-40 text-right w-full min-h-20">preview</p>
+		<textarea in:fade class="preview" type="text" bind:value={textPreview} />
+	</section>
 {/if}
 <form
 	action="/api/add"
@@ -53,7 +48,7 @@
 		required
 		bind:value={textSubmit}
 	/>
-	<button type="submit" class="btn-light place-self-end"> 📥 Release</button>
+	<button type="submit" class="btn-light ml-auto"> 📥 Release</button>
 </form>
 
 {#if error}
