@@ -1,4 +1,4 @@
-<section class="h-80vh overflow-y-scroll">
+<section class="h-80vh overflow-x-hidden overflow-y-scroll ">
 	<h1>Privacy Policy</h1>
 	<p>Last updated: June 30, 2022</p>
 	<p>
