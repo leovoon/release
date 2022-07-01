@@ -1,16 +1,12 @@
 <script context="module" lang="ts">
-	export const load: Load = async ({ session, url, fetch }) => {
+	export const load: Load = async ({ session, fetch }) => {
 		const { user } = session;
-
 		if (!user) {
 			return {
-				status: 303,
-				headers: {
-					location: '/login'
-				}
+				status: 302,
+				redirect: '/login'
 			};
 		}
-
 		const { textList } = await fetch(`/history.json`).then((r) => r.json());
 		return {
 			props: {
