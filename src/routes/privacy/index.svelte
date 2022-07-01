@@ -1,6 +1,6 @@
 <section class="h-80vh overflow-x-hidden overflow-y-scroll ">
 	<h1>Privacy Policy</h1>
-	<p>Last updated: June 30, 2022</p>
+	<p>Last updated: July 1, 2022</p>
 	<p>
 		This Privacy Policy describes Our policies and procedures on the collection,
 		use and disclosure of Your information when You use the Service and tells
@@ -108,9 +108,7 @@
 		personally identifiable information that can be used to contact or identify
 		You. Personally identifiable information may include, but is not limited to:
 	</p>
-	<ul>
-		<li>Usage Data</li>
-	</ul>
+
 	<h3>Usage Data</h3>
 	<p>Usage Data is collected automatically when using the Service.</p>
 	<p>
@@ -139,6 +137,7 @@
 	<ul>
 		<li>Google</li>
 		<li>Facebook</li>
+		<li>Github</li>
 	</ul>
 	<p>
 		If You decide to register through or otherwise grant us access to a
@@ -168,14 +167,6 @@
 			when a Cookie is being sent. However, if You do not accept Cookies, You may
 			not be able to use some parts of our Service. Unless you have adjusted Your
 			browser setting so that it will refuse Cookies, our Service may use Cookies.
-		</li>
-		<li>
-			<strong>Web Beacons.</strong> Certain sections of our Service and our emails
-			may contain small electronic files known as web beacons (also referred to as
-			clear gifs, pixel tags, and single-pixel gifs) that permit the Company, for
-			example, to count users who have visited those pages or opened an email and
-			for other related website statistics (for example, recording the popularity
-			of a certain section and verifying system and server integrity).
 		</li>
 	</ul>
 	<p>
