@@ -10,7 +10,7 @@
 	$: isGoogle = user?.provider === 'google';
 	$: isFacebook = user?.provider === 'facebook';
 	$: isGithub = user?.provider === 'github';
-	$: isTwitter = user?.provider === 'twitter';
+	// $: isTwitter = user?.provider === 'twitter';
 	$: errorParam = $page.url.searchParams.get('error');
 
 	function signOut() {
