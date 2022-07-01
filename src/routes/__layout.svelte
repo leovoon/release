@@ -10,6 +10,7 @@
 	$: isGoogle = user?.provider === 'google';
 	$: isFacebook = user?.provider === 'facebook';
 	$: isGithub = user?.provider === 'github';
+	$: isTwitter = user?.provider === 'twitter';
 	$: errorParam = $page.url.searchParams.get('error');
 
 	function signOut() {
@@ -37,7 +38,7 @@
 	{/if}
 	<nav>
 		<ul>
-			{#if user}
+			{#if user && !errorParam}
 				<img
 					referrerpolicy={isGoogle ? 'no-referrer' : null}
 					class="w-8 h-8 rounded"

@@ -22,13 +22,13 @@
 	</section>
 {/if}
 <form
-	action="/api/add"
+	action={`/api/add/${mood}`}
 	method="post"
 	use:enhance={{
 		result: ({ form }) => {
 			(posting = false),
 				form.reset(),
-				(saved = 'saved'),
+				(saved = 'Saved'),
 				setTimeout(() => (saved = ''), 2000);
 		},
 		pending: () => (posting = true),
@@ -36,7 +36,6 @@
 	}}
 	class="grid"
 >
-	<input type="hidden" name="mood" value={mood} required />
 	<textarea
 		cols={30}
 		rows={8}
@@ -51,7 +50,7 @@
 {#if error}
 	<p class="error">oops! {error.message}</p>
 {:else if posting}
-	<p>saving release...</p>
+	<p>Saving...</p>
 {/if}
 
 {saved}

@@ -1,9 +1,10 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { prisma } from '$lib/db/client';
 
-export const get: RequestHandler = async () => {
+export const get: RequestHandler = async ({ url }) => {
+	const allParam = url.searchParams.get('q') === 'all';
 	const textList = await prisma.release.findMany({
-		take: 3,
+		...(!allParam && { take: 3 }),
 		orderBy: [
 			{
 				createdAt: 'desc'
@@ -14,7 +15,7 @@ export const get: RequestHandler = async () => {
 	if (!textList) {
 		return {
 			status: 404,
-			body: { message: 'something went wrong' }
+			body: { error: 'something went wrong' }
 		};
 	}
 
@@ -27,24 +28,25 @@ export const get: RequestHandler = async () => {
 	};
 };
 
-export const post: RequestHandler = async ({ url }) => {
-	let nextList;
-	const q = url.searchParams.get('q');
-	if (q)
-		nextList = await prisma.release.findMany({
-			skip: 3,
-			orderBy: [
-				{
-					createdAt: 'desc'
-				}
-			]
-		});
+export const del: RequestHandler = async ({ request }) => {
+	const { id } = await request.json();
 
+	const deletedText = await prisma.release.delete({
+		where: {
+			id: id
+		}
+	});
+	if (!deletedText) {
+		return {
+			status: 404,
+			body: { msg: 'Failed to delete.' }
+		};
+	}
 	return {
-		status: 200,
-		body: { nextList },
-		headers: {
-			'cache-control': 's-maxage-1, stale-while-revalidate=5'
+		status: 202,
+		body: {
+			deletedText,
+			msg: 'Successfully deleted.'
 		}
 	};
 };

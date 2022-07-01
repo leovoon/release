@@ -3,9 +3,9 @@ import {
 	//   TwitchOAuth2Provider,
 	FacebookOAuth2Provider,
 	GoogleOAuth2Provider,
-	GitHubOAuth2Provider
+	GitHubOAuth2Provider,
+	TwitterAuthProvider
 	//   RedditOAuth2Provider,
-	//   TwitterAuthProvider,
 	//   SpotifyOAuth2Provider,
 } from 'sk-auth/providers';
 
@@ -38,14 +38,14 @@ export const appAuth = new SvelteKitAuth({
 			profile(profile) {
 				return { ...profile, provider: 'facebook' };
 			}
+		}),
+		new TwitterAuthProvider({
+			apiKey: import.meta.env.VITE_TWITTER_OAUTH_CLIENT_ID,
+			apiSecret: import.meta.env.VITE_TWITTER_OAUTH_CLIENT_SECRET,
+			profile(profile) {
+				return { ...profile, provider: 'twitter' };
+			}
 		})
-		// new TwitterAuthProvider({
-		// 	apiKey: import.meta.env.VITE_TWITTER_API_KEY,
-		// 	apiSecret: import.meta.env.VITE_TWITTER_API_SECRET,
-		// 	profile(profile) {
-		// 		return { ...profile, provider: 'twitter' };
-		// 	}
-		// }),
 		// new RedditOAuth2Provider({
 		// 	apiKey: import.meta.env.VITE_REDDIT_API_KEY,
 		// 	apiSecret: import.meta.env.VITE_REDDIT_API_SECRET,

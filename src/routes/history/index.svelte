@@ -18,79 +18,119 @@
 
 <script lang="ts">
 	import type { Release } from '@prisma/client';
-	import { enhance } from '$lib/form';
 	import { clean } from '$lib/profane';
 	import { fly } from 'svelte/transition';
+	import { flip } from 'svelte/animate';
+
+	import EditIconButton from '$lib/icons/EditIconButton.svelte';
+	import CloseButton from '$lib/icons/CloseButton.svelte';
+	import DeleteButton from '$lib/icons/DeleteButton.svelte';
 	import type { Load } from '@sveltejs/kit';
 	export let textList: Release[] = [];
-	export let nextList: Release[] = [];
 	let defaultListCount = 3;
 	let updatedList: Release[] = [];
-	let textToGrab = 'all';
+	let allparam = 'all';
 	let pending = false;
 	let allLoaded = false;
 	let error: Error | null;
+	let toggleEdit = false;
 
-	$: nextList.length > 0
-		? (updatedList = [...textList, ...nextList])
-		: (updatedList = textList);
+	$: toggleEditFn = () => (toggleEdit = !toggleEdit);
+
+	$: updatedList = textList;
 
 	$: updatedlistLen = updatedList.length;
 	$: countIsSame = updatedList.length === defaultListCount;
+
+	async function handleDelete(id: number, text: string) {
+		const confirmed = confirmDelete(text);
+		if (!confirmed) return;
+		const response = await fetch('/history.json?_method=DELETE', {
+			method: 'POST',
+			body: JSON.stringify({
+				id
+			})
+		});
+		const { deletedText } = await response.json();
+
+		if (deletedText) {
+			updatedList = updatedList.filter((text) => text.id !== deletedText.id);
+		}
+	}
+
+	async function handleViewAll() {
+		if (updatedlistLen < defaultListCount) return;
+		const response = await fetch(`/history.json?q=${allparam}`);
+		pending = true;
+		let { textList, error } = await response.json();
+
+		if (!textList) {
+			error = error;
+			return;
+		}
+		pending = false;
+		allLoaded = true;
+		updatedList = textList;
+	}
+	function confirmDelete(text: string): boolean {
+		return window.confirm(`Are you sure to delete < ${text} >?`);
+	}
 </script>
 
 <section class="bg-cyan-50 p-2 grid gap-2 border border-dotted border-gray-300">
-	<b class="my-2 h-10"
-		>Total: {#key updatedList}<span
-				class="h-max inline-flex"
-				in:fly={{ y: -30, duration: 500, delay: 200 }}
-			>
-				{updatedlistLen}
-			</span>{/key}</b
-	>
+	<div class="flex p-2 items-center my-2">
+		<b class=" inline-flex items-center"
+			>Total: {#key updatedList}<span
+					class="h-max inline-flex"
+					in:fly={{ y: countIsSame ? 0 : -30, duration: 500, delay: 200 }}
+				>
+					{updatedlistLen}
+				</span>{/key}</b
+		>
+		{#if updatedlistLen > 0}
+			{#if toggleEdit}
+				<CloseButton on:click={toggleEditFn} />
+			{:else}
+				<EditIconButton on:click={toggleEditFn} />
+			{/if}
+		{/if}
+	</div>
 	{#if updatedList.length > 0}
 		<ol>
-			{#each updatedList as { text, mood }, i}
-				{#key text}
-					<li
-						in:fly={{ x: countIsSame ? 0 : -50, duration: 250, delay: i * 200 }}
-						class:happy={mood === 'happy'}
-						class:hate={mood === 'hate'}
-					>
+			{#each updatedList as { text, mood, id }, i (id)}
+				<li
+					in:fly={{
+						x: -50,
+						duration: 250,
+						delay: i * 200
+					}}
+					animate:flip
+					out:fly|local={{ x: 100 }}
+					class:happy={mood === 'happy'}
+					class:hate={mood === 'hate'}
+				>
+					<p>
 						{clean(text)}
 						<sub class="uppercase">{mood === 'happy' ? '🥰' : '🔥'}</sub>
-					</li>
-				{/key}
+					</p>
+
+					{#if toggleEdit}
+						<DeleteButton on:click={() => handleDelete(id, text)} />
+					{/if}
+				</li>
 			{/each}
 		</ol>
-		<form
-			action={`/history.json?q=${textToGrab}`}
-			method="post"
-			use:enhance={{
-				result: async ({ response: res }) => {
-					let data = await res.json();
-					nextList = data['nextList'];
-					pending = false;
-					allLoaded = true;
-				},
-				pending: () => {
-					if (updatedlistLen > defaultListCount) {
-						pending = false;
-					} else {
-						pending = true;
-					}
-				},
-				error: ({ error }) => (error = error)
-			}}
-		>
-			{#if !allLoaded}
-				<button type="submit" class="btn-light mt-4 w-full text-center"
-					>view all</button
-				>
-			{/if}
-		</form>
+
+		{#if !allLoaded}
+			<button
+				on:click={() => handleViewAll()}
+				class="btn-light mt-4 w-full text-center">view all</button
+			>
+		{:else}
+			<p class="text-center mt-4 text-gray-300">-- end of lines --</p>
+		{/if}
 	{:else}
-		<p>Nothing found in the database</p>
+		<p class="p-2">Nothing here</p>
 	{/if}
 </section>
 {#if pending}
