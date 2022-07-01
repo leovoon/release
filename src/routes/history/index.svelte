@@ -59,7 +59,6 @@
 	}
 
 	async function handleViewAll() {
-		if (updatedlistLen < defaultListCount) return;
 		const response = await fetch(`/history.json?q=${allparam}`);
 		pending = true;
 		let { textList, error } = await response.json();
@@ -80,12 +79,14 @@
 <section class="bg-cyan-50 p-2 grid gap-2 border border-dotted border-gray-300">
 	<div class="flex p-2 items-center my-2">
 		<b class=" inline-flex items-center"
-			>Total: {#key updatedList}<span
-					class="h-max inline-flex"
+			>Total: {#key updatedList}
+				<span
+					class="h-max inline-flex ml-1"
 					in:fly={{ y: countIsSame ? 0 : -30, duration: 500, delay: 200 }}
 				>
 					{updatedlistLen}
-				</span>{/key}</b
+				</span>
+			{/key}</b
 		>
 		{#if updatedlistLen > 0}
 			{#if toggleEdit}
