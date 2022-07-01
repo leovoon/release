@@ -31,6 +31,7 @@
 	let updatedList: Release[] = [];
 	let allparam = 'all';
 	let pending = false;
+	let deleting = false;
 	let allLoaded = false;
 	let error: Error | null;
 	let toggleEdit = false;
@@ -45,17 +46,21 @@
 	async function handleDelete(id: number, text: string) {
 		const confirmed = confirmDelete(text);
 		if (!confirmed) return;
+		deleting = true;
 		const response = await fetch('/history.json?_method=DELETE', {
 			method: 'POST',
 			body: JSON.stringify({
 				id
 			})
 		});
+
 		const { deletedText } = await response.json();
 
 		if (deletedText) {
+			deleting = false;
 			updatedList = updatedList.filter((text) => text.id !== deletedText.id);
 		}
+		deleting = false;
 	}
 
 	async function handleViewAll() {
@@ -131,11 +136,14 @@
 			<p class="text-center mt-4 text-gray-300">-- end of lines --</p>
 		{/if}
 	{:else}
-		<p class="p-2">Nothing here</p>
+		<p class="p-2">Nothing here.</p>
 	{/if}
 </section>
 {#if pending}
-	<p class="mt-10 text-center">loading...</p>
+	<p class="mt-10 text-center">Loading...</p>
+{/if}
+{#if deleting}
+	<p class="mt-10 text-center">Deleting...</p>
 {/if}
 
 {#if error}
