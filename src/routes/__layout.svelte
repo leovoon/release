@@ -46,7 +46,7 @@
 						: isFacebook
 						? user.picture.data.url
 						: isGithub
-						? user.avatar.url
+						? user.avatar_url
 						: null}
 					alt={`profile image of ${user.name}`}
 				/>
