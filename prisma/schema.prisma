@@ -19,4 +19,6 @@ model Release {
     text      String    @db.VarChar(2000)
     mood      String    @db.VarChar(255)
 
+    @@unique([id])
+    @@index([id])
 }
