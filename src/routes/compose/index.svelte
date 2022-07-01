@@ -42,7 +42,7 @@
 	<input type="hidden" name="mood" value={mood} required />
 	<textarea
 		cols={30}
-		rows={6}
+		rows={8}
 		name="text"
 		placeholder="Speak your brains"
 		required
