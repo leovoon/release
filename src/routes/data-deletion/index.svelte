@@ -1,3 +1,7 @@
+<script context="module">
+	export const prerender = true;
+</script>
+
 <section class="mb-auto mt-20">
 	<h1>How to delete your data ?</h1>
 	<p>
