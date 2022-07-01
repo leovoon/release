@@ -3,12 +3,13 @@
 	import { session, page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import { signOut as authSignOut } from 'sk-auth/client';
-	import { fly } from 'svelte/transition';
+	import { fly, fade } from 'svelte/transition';
 
 	let notice = '';
 	$: user = $session?.user;
 	$: isGoogle = user?.provider === 'google';
 	$: isFacebook = user?.provider === 'facebook';
+	$: errorParam = $page.url.searchParams.get('error');
 
 	function signOut() {
 		authSignOut()
@@ -57,6 +58,9 @@
 			{/if}
 		</ul>
 	</nav>
+	{#if errorParam}
+		<p in:fade class="msg">Login failed. Try again?</p>
+	{/if}
 	<slot />
 </main>
 

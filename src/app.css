@@ -71,4 +71,7 @@
 	.preview {
 		@apply rounded font-semibold border-2 mb-4 opacity-50 p-4 overflow-scroll;
 	}
+	.msg {
+		@apply p-4 my-2 rounded-md bg-red-200;
+	}
 }
