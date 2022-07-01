@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { enhance } from '$lib/form';
-	import { onMount } from 'svelte';
 	import { clean } from '$lib/profane';
 	import { fade } from 'svelte/transition';
 	export let mood: string;
@@ -12,8 +11,6 @@
 
 	$: empty = !textPreview.length;
 	$: textPreview = clean(textSubmit);
-
-	onMount(() => (saved = ''));
 </script>
 
 <div class="big-text">{mood === 'happy' ? '正能量' : '负能量'}</div>

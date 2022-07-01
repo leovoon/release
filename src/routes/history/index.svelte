@@ -1,11 +1,34 @@
+<script context="module" lang="ts">
+	export const load: Load = async ({ session, url, fetch }) => {
+		const { user } = session;
+
+		if (!user) {
+			return {
+				status: 303,
+				headers: {
+					location: '/login'
+				}
+			};
+		}
+
+		const { textList } = await fetch(`/history.json`).then((r) => r.json());
+		return {
+			props: {
+				textList
+			}
+		};
+	};
+</script>
+
 <script lang="ts">
 	import type { Release } from '@prisma/client';
 	import { enhance } from '$lib/form';
 	import { clean } from '$lib/profane';
 	import { fly } from 'svelte/transition';
+	import type { Load } from '@sveltejs/kit';
 	export let textList: Release[] = [];
+	export let nextList: Release[] = [];
 	let defaultListCount = 3;
-	let nextList: Release[] = [];
 	let updatedList: Release[] = [];
 	let textToGrab = 'all';
 	let pending = false;
@@ -45,7 +68,7 @@
 			{/each}
 		</ol>
 		<form
-			action={`/history?q=${textToGrab}`}
+			action={`/history.json?q=${textToGrab}`}
 			method="post"
 			use:enhance={{
 				result: async ({ response: res }) => {
