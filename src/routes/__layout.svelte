@@ -9,6 +9,7 @@
 	$: user = $session?.user;
 	$: isGoogle = user?.provider === 'google';
 	$: isFacebook = user?.provider === 'facebook';
+	$: isGithub = user?.provider === 'github';
 	$: errorParam = $page.url.searchParams.get('error');
 
 	function signOut() {
@@ -44,6 +45,8 @@
 						? user.picture
 						: isFacebook
 						? user.picture.data.url
+						: isGithub
+						? user.avatar.url
 						: null}
 					alt={`profile image of ${user.name}`}
 				/>
