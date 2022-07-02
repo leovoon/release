@@ -35,6 +35,7 @@
 	let allLoaded = false;
 	let error: Error | null;
 	let toggleEdit = false;
+	let toggleDate = false;
 
 	$: toggleEditFn = () => (toggleEdit = !toggleEdit);
 
@@ -79,6 +80,12 @@
 	function confirmDelete(text: string): boolean {
 		return window.confirm(`Are you sure to delete < ${text} >?`);
 	}
+
+	function formatDate(createdAt: string | number | Date | null) {
+		if (!createdAt) return;
+		const date = new Date(createdAt);
+		return date.toLocaleDateString();
+	}
 </script>
 
 <section class="bg-cyan-50 p-2 grid gap-2 border border-dotted border-gray-300">
@@ -103,7 +110,7 @@
 	</div>
 	{#if updatedList.length > 0}
 		<ol>
-			{#each updatedList as { text, mood, id }, i (id)}
+			{#each updatedList as { text, mood, createdAt, id }, i (id)}
 				<li
 					in:fly={{
 						x: -50,
@@ -114,12 +121,21 @@
 					out:fly|local={{ x: 100 }}
 					class:happy={mood === 'happy'}
 					class:hate={mood === 'hate'}
+					on:click={() => (toggleDate = !toggleDate)}
 				>
 					<p>
 						{clean(text)}
 						<sub class="uppercase">{mood === 'happy' ? '🥰' : '🔥'}</sub>
 					</p>
-
+					{#if toggleDate}
+						<p
+							in:fly={{ x: -30 }}
+							out:fly|local={{ x: 30 }}
+							class="text-xs ml-8 text-gray-400"
+						>
+							{formatDate(createdAt)}
+						</p>
+					{/if}
 					{#if toggleEdit}
 						<DeleteButton on:click={() => handleDelete(id, text)} />
 					{/if}
