@@ -1,5 +1,5 @@
 <svg
-	on:click
+	on:click|stopPropagation
 	class="ml-auto mx-2 cursor-pointer w-6 h-6 opacity-30 transform transition fill-gray-400 w-6 hover:opacity-100 hover:fill-red-400 hover:rotate-12 transform-gpu"
 	fill-rule="evenodd"
 	clip-rule="evenodd"
