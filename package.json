@@ -36,7 +36,8 @@
 	},
 	"dependencies": {
 		"@prisma/client": "^4.0.0",
-		"sk-auth": "github:ohmree/sk-auth#fix-mergepath"
+		"sk-auth": "github:ohmree/sk-auth#fix-mergepath",
+		"svelte-local-storage-store": "^0.2.6"
 	},
 	"type": "module"
 }

@@ -26,6 +26,8 @@
 	import CloseButton from '$lib/icons/CloseButton.svelte';
 	import DeleteButton from '$lib/icons/DeleteButton.svelte';
 	import type { Load } from '@sveltejs/kit';
+	import EmojiPicker from '$lib/components/EmojiPicker.svelte';
+	import { happyEmoji, hateEmoji } from '$lib/stores/localStorage';
 	export let textList: Release[] = [];
 	let defaultListCount = 3;
 	let updatedList: Release[] = [];
@@ -36,6 +38,11 @@
 	let error: Error | null;
 	let toggleEdit = false;
 	let toggleDate = false;
+
+	const emojis = {
+		happy: ['😌', '😇', '🥰', '❤️', '💕'],
+		hate: ['🔥', '🤬', '😕', '😭', '😥']
+	};
 
 	$: toggleEditFn = () => (toggleEdit = !toggleEdit);
 
@@ -88,6 +95,14 @@
 	}
 </script>
 
+{#if toggleEdit}
+	<EmojiPicker
+		{emojis}
+		bind:happyEmoji={$happyEmoji}
+		bind:hateEmoji={$hateEmoji}
+	/>
+{/if}
+
 <section class="bg-cyan-50 p-2 grid gap-2 border border-dotted border-gray-300">
 	<div class="flex p-2 items-center my-2">
 		<b class=" inline-flex items-center"
@@ -100,6 +115,7 @@
 				</span>
 			{/key}</b
 		>
+
 		{#if updatedlistLen > 0}
 			{#if toggleEdit}
 				<CloseButton on:click={toggleEditFn} />
@@ -125,7 +141,9 @@
 				>
 					<p>
 						{clean(text)}
-						<sub class="uppercase">{mood === 'happy' ? '🥰' : '🔥'}</sub>
+						<sub class="uppercase"
+							>{mood === 'happy' ? $happyEmoji : $hateEmoji}</sub
+						>
 					</p>
 					{#if toggleDate}
 						<p
