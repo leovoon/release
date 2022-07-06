@@ -29,7 +29,7 @@
 	import type { Load } from '@sveltejs/kit';
 	import EmojiPicker from '$lib/components/EmojiPicker.svelte';
 	import { happyEmoji, hateEmoji } from '$lib/stores/localStorage';
-	import Timeago from '$lib/components/TimeAgo.svelte';
+
 	export let textList: Release[] = [];
 	let defaultListCount = 3;
 	let updatedList: Release[] = [];
@@ -141,7 +141,7 @@
 							>{mood === 'happy' ? $happyEmoji : $hateEmoji}</sub
 						>
 					</p>
-					{#if toggleDate && createdAt }
+					{#if toggleDate && createdAt}
 						<p
 							in:fly={{ x: -30 }}
 							out:fly|local={{ x: 30 }}

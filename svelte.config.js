@@ -15,6 +15,9 @@ const config = {
 		adapter: adapter(),
 		methodOverride: {
 			allowed: ['PUT', 'PATCH', 'DELETE']
+		},
+		prerender: {
+			default: false
 		}
 	}
 };
