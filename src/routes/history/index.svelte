@@ -25,9 +25,11 @@
 	import EditIconButton from '$lib/icons/EditIconButton.svelte';
 	import CloseButton from '$lib/icons/CloseButton.svelte';
 	import DeleteButton from '$lib/icons/DeleteButton.svelte';
+	import TimeAgo from '$lib/components/TimeAgo.svelte';
 	import type { Load } from '@sveltejs/kit';
 	import EmojiPicker from '$lib/components/EmojiPicker.svelte';
 	import { happyEmoji, hateEmoji } from '$lib/stores/localStorage';
+	import Timeago from '$lib/components/TimeAgo.svelte';
 	export let textList: Release[] = [];
 	let defaultListCount = 3;
 	let updatedList: Release[] = [];
@@ -87,12 +89,6 @@
 	function confirmDelete(text: string): boolean {
 		return window.confirm(`Are you sure to delete < ${text} >?`);
 	}
-
-	function formatDate(createdAt: string | number | Date | null) {
-		if (!createdAt) return;
-		const date = new Date(createdAt);
-		return date.toLocaleDateString();
-	}
 </script>
 
 {#if toggleEdit}
@@ -145,13 +141,13 @@
 							>{mood === 'happy' ? $happyEmoji : $hateEmoji}</sub
 						>
 					</p>
-					{#if toggleDate}
+					{#if toggleDate && createdAt }
 						<p
 							in:fly={{ x: -30 }}
 							out:fly|local={{ x: 30 }}
 							class="text-xs ml-8 text-gray-400"
 						>
-							{formatDate(createdAt)}
+							<TimeAgo date={createdAt} />
 						</p>
 					{/if}
 					{#if toggleEdit}

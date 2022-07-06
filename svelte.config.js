@@ -1,6 +1,5 @@
 import adapter from '@sveltejs/adapter-auto';
 import preprocess from 'svelte-preprocess';
-import mkcert from 'vite-plugin-mkcert';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -16,11 +15,7 @@ const config = {
 		adapter: adapter(),
 		methodOverride: {
 			allowed: ['PUT', 'PATCH', 'DELETE']
-		},
-		vite: () => ({
-			server: { https: true },
-			plugins: [mkcert()]
-		})
+		}
 	}
 };
 
