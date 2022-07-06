@@ -12,7 +12,9 @@ const config = {
 	],
 
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({
+			edge: true
+		}),
 		methodOverride: {
 			allowed: ['PUT', 'PATCH', 'DELETE']
 		},
