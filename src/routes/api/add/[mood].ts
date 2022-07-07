@@ -7,7 +7,6 @@ export const post: RequestHandler = async ({ request, params }) => {
 	const form = await request.formData();
 	const text = form.get('text')?.toString();
 	const mood = params.mood;
-	console.log(mood);
 
 	if (text && mood) {
 		createdText = await prisma.release.create({
