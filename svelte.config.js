@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-netlify@1.0.0-next.65';
+import adapter from '@sveltejs/adapter-netlify';
 import preprocess from 'svelte-preprocess';
 
 /** @type {import('@sveltejs/kit').Config} */
