@@ -23,16 +23,16 @@ const minification_options = {
 };
 
 export const handle: Handle = async ({ event, resolve }) => {
+	const { user } = await getSession(event);
+	event.locals.user = user;
 	const response = await resolve(event);
+
 	if (prerendering && response.headers.get('content-type') === 'text/html') {
 		return new Response(minify(await response.text(), minification_options), {
 			status: response.status,
 			headers: response.headers
 		});
 	}
-
-	const { user } = await getSession(event);
-	event.locals.user = user;
 	return response;
 };
 
