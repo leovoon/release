@@ -1,11 +1,11 @@
 <script lang="ts">
 	import '../app.css';
-	import { session, page } from '$app/stores';
+	import { session, page, navigating } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import { signOut as authSignOut } from 'sk-auth/client';
-	import { fly, fade } from 'svelte/transition';
+	import { fade } from 'svelte/transition';
+	import LoadingSpinner from '$lib/components/LoadingSpinner.svelte';
 
-	let notice = '';
 	$: user = $session?.user;
 	$: isGoogle = user?.provider === 'google';
 	$: isFacebook = user?.provider === 'facebook';
@@ -16,13 +16,7 @@
 	function signOut() {
 		authSignOut()
 			.then(session.set)
-			.then(() => handleIsLoggedOut())
 			.then(() => goto('/'));
-	}
-
-	function handleIsLoggedOut() {
-		notice = 'Logging out...';
-		setTimeout(() => (notice = ''), 1000);
 	}
 </script>
 
@@ -30,12 +24,10 @@
 	<title>Release | Spit your thoughts out</title>
 </svelte:head>
 
+{#if $navigating}
+	<LoadingSpinner />
+{/if}
 <main>
-	{#if notice.length}
-		<h3 in:fly={{ x: -30, duration: 500 }}>
-			{notice}
-		</h3>
-	{/if}
 	<nav>
 		<ul>
 			{#if user && !errorParam}

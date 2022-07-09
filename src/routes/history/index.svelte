@@ -99,7 +99,9 @@
 	/>
 {/if}
 
-<section class="bg-cyan-50 p-2 grid gap-2 border border-dotted border-gray-300">
+<section
+	class="bg-cyan-50 p-2 mt-4 grid gap-2 border border-dotted border-gray-300"
+>
 	<div class="flex p-2 items-center my-2">
 		<b class=" inline-flex items-center"
 			>Total: {#key updatedList}

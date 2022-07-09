@@ -5,10 +5,10 @@
 </header>
 
 <div class="flex flex-col gap-4 ">
-	<a sveltekit:prefetch href="/compose?m=hate" class="btn-blue">
+	<a sveltekit:prefetch href="/compose?m=hate" class="btn-red">
 		I hate it when 🔥</a
 	>
-	<a sveltekit:prefetch href="/compose?m=happy" class="btn-red"
+	<a sveltekit:prefetch href="/compose?m=happy" class="btn-blue"
 		>I am happy that 💚</a
 	>
 	<a sveltekit:prefetch href="/history" class="btn-light">view history</a>
