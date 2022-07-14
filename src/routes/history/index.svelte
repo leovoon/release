@@ -143,14 +143,17 @@
 							>{mood === 'happy' ? $happyEmoji : $hateEmoji}</sub
 						>
 					</p>
+
 					{#if toggleDate && createdAt}
-						<p
-							in:fly={{ x: -30 }}
-							out:fly|local={{ x: 30 }}
-							class="text-xs ml-8 text-gray-400"
-						>
-							<TimeAgo date={createdAt} />
-						</p>
+						<div class="flex">
+							<p
+								in:fly={{ x: -30 }}
+								out:fly|local={{ x: 30 }}
+								class="text-xs flex-1 text-center px-2 text-gray-400"
+							>
+								<TimeAgo date={createdAt} />
+							</p>
+						</div>
 					{/if}
 					{#if toggleEdit}
 						<DeleteButton on:click={() => handleDelete(id, text)} />

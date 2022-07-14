@@ -7,7 +7,7 @@
 
 <div
 	transition:fly|local={{ y: 30, duration: 300 }}
-	class="flex flex-col gap-4 w-full items-center p-2"
+	class="flex text-2xl flex-col gap-4 mt-4 w-full items-center p-2"
 >
 	<div class="inline-flex gap-6">
 		{#each emojis.happy as emoji}
