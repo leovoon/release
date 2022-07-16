@@ -15,9 +15,15 @@
 	};
 </script>
 
+<script lang="ts">
+	import { pathnameBeforeLogin } from '$lib/stores/routeStore';
+</script>
+
 <section class="m-auto w-full grid gap-6 place-items-center">
 	<h1 class="my-4 text-center">Choose method</h1>
-	<a href="/api/auth/signin/google?redirect=/" class="btn-login"
+	<a
+		href="/api/auth/signin/google?redirect={$pathnameBeforeLogin}"
+		class="btn-login"
 		>Login with <svg class="w-5 h-5 inline mx-2" viewBox="0 0 48 48"
 			><defs
 				><path
@@ -41,7 +47,9 @@
 		></a
 	>
 
-	<a href="/api/auth/signin/facebook?redirect=/" class="btn-login "
+	<a
+		href="/api/auth/signin/facebook?redirect={$pathnameBeforeLogin}"
+		class="btn-login "
 		>Login with
 		<svg
 			class="w-6 h-6 inline mx-2"
@@ -58,7 +66,9 @@
 			/></svg
 		>
 	</a>
-	<a href="/api/auth/signin/github?redirect=/" class="btn-login "
+	<a
+		href="/api/auth/signin/github?redirect={$pathnameBeforeLogin}"
+		class="btn-login "
 		>Login with
 		<svg class="w-5 h-5 inline mx-2 text-white" viewBox="0 0 24 24"
 			><path

@@ -5,6 +5,15 @@
 	import { signOut as authSignOut } from 'sk-auth/client';
 	import { fade } from 'svelte/transition';
 	import LoadingSpinner from '$lib/components/LoadingSpinner.svelte';
+	import { beforeNavigate } from '$app/navigation';
+	import { pathnameBeforeLogin } from '$lib/stores/routeStore';
+
+	$: beforeNavigate(({ from, to }) => {
+		if (to && to?.pathname !== '/' && to.pathname !== '/login' && !user) {
+			$pathnameBeforeLogin = to.href;
+			return;
+		}
+	});
 
 	$: user = $session?.user;
 	$: isGoogle = user?.provider === 'google';
@@ -23,7 +32,6 @@
 <svelte:head>
 	<title>Release | Spit your thoughts out</title>
 </svelte:head>
-
 {#if $navigating}
 	<LoadingSpinner />
 {/if}
