@@ -1,38 +1,112 @@
-# create-svelte
+<div id="top"></div>
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/leovoon/release">
+    <img src="static/favicon.png" alt="Logo" width="40" height="40" >
+  </a>
+   <br />
 
-## Creating a project
+<h3 align="center"><b>Release</b></h3>
 
-If you're seeing this, you've probably already done this step. Congrats!
+  <p align="center">
+    spit your thoughts anonymously
+    <br />
+    <br />
+    <a href="https://znl.netlify.app">View Demo</a>
+    ·
+    <a href="https://github.com/leovoon/release/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/leovoon/release/issues">Request Feature</a>
+  </p>
+</div>
 
-```bash
-# create a new project in the current directory
-npm init svelte
+<div align="center">
 
-# create a new project in my-app
-npm init svelte my-app
-```
+[![Status](https://img.shields.io/badge/status-active-success.svg)]()
+[![GitHub Issues](https://img.shields.io/github/issues/leovoon/release.svg)](https://github.com/leovoon/release/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/leovoon/release.svg)](https://github.com/leovoon/release)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-## Developing
+</div>
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+<br/>
 
-```bash
-npm run dev
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+<br/>
+<!-- ABOUT THE PROJECT -->
 
-## Building
+## About The Project
 
-To create a production version of your app:
+A place for you to anonymously spit your thoughts
 
-```bash
-npm run build
-```
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-You can preview the production build with `npm run preview`.
+### Built With
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+- [SvelteKit](https://kit.svelte.dev/)
+- [Prisma](https://www.prisma.io/)
+- [PlanetScale](https://planetscale.com)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
+
+## Getting Started
+
+To get a local copy up and running follow these simple example steps.
+
+- npm
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/leovoon/release.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+   <p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- CONTRIBUTING -->
+
+## Contributing
+
+Any contributions you make are **greatly appreciated**.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- LICENSE -->
+
+## License
+
+Distributed under the MIT License.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
