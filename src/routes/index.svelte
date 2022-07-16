@@ -1,6 +1,6 @@
 <header>
 	<h1 class="text-xl grid place-items-center w-full mb-4 ">
-		Release <sup class="m-4 text-red-300">beta 0.0.4</sup>
+		Release <sup class="m-4 text-red-300">beta 0.0.5</sup>
 	</h1>
 </header>
 

@@ -4,10 +4,10 @@
 	import { fade } from 'svelte/transition';
 	export let mood: string;
 	let error: Error | null;
-	let posting: Boolean;
-	let saved: string = '';
-	let textPreview: string = '';
-	let textSubmit: string = '';
+	let posting: boolean;
+	let saved = '';
+	let textPreview = '';
+	let textSubmit = '';
 
 	$: empty = !textPreview.length;
 	$: textPreview = clean(textSubmit);

@@ -76,10 +76,10 @@
 	async function handleViewAll() {
 		const response = await fetch(`/history.json?q=${allparam}`);
 		pending = true;
-		let { textList, error } = await response.json();
+		let { textList, error: Error } = await response.json();
 
 		if (!textList) {
-			error = error;
+			error = Error;
 			return;
 		}
 		pending = false;
@@ -182,7 +182,7 @@
 {/if}
 
 {#if error}
-	<p>Something went wrong..</p>
+	<p>Something went wrong...{error}</p>
 {/if}
 
 <a href="/" class="btn-gray "> ↩️ back </a>

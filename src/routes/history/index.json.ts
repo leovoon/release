@@ -15,7 +15,7 @@ export const get: RequestHandler = async ({ url }) => {
 	if (!textList) {
 		return {
 			status: 404,
-			body: { error: 'something went wrong' }
+			body: new Error('Failed to fetch list.')
 		};
 	}
 

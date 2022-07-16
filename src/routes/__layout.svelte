@@ -8,7 +8,7 @@
 	import { beforeNavigate } from '$app/navigation';
 	import { pathnameBeforeLogin } from '$lib/stores/routeStore';
 
-	$: beforeNavigate(({ from, to }) => {
+	$: beforeNavigate(({ to }) => {
 		if (to && to?.pathname !== '/' && to.pathname !== '/login' && !user) {
 			$pathnameBeforeLogin = to.href;
 			return;
