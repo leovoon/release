@@ -2,10 +2,10 @@
 	import { fade } from 'svelte/transition';
 </script>
 
-<div class="h-full w-full grid inset-0 fixed place-content-center ">
-	<div class="bg-gray-300 w-full opacity-40 inset-0 z-10 absolute" />
+<div class="h-full z-40 w-full grid inset-0 fixed place-content-center ">
+	<div class="bg-gray-300 w-full opacity-40 inset-0 z-20 absolute" />
 	<svg
-		class="z-20"
+		class="z-30"
 		in:fade
 		width="120"
 		height="30"
