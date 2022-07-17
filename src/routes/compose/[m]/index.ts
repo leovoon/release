@@ -1,6 +1,6 @@
 import type { RequestHandler } from '@sveltejs/kit';
 
-export const get: RequestHandler = async ({ locals, url }) => {
+export const get: RequestHandler = async ({ locals, params }) => {
 	const isLoggedIn = locals.user;
 	if (!isLoggedIn) {
 		return {
@@ -11,8 +11,11 @@ export const get: RequestHandler = async ({ locals, url }) => {
 		};
 	}
 
-	const mood = url.searchParams.get('m');
+	const mood = params.m;
 	return {
-		body: { mood }
+		body: { mood },
+		headers: {
+			'Cache-Control': 's-maxage=36000, stale-while-revalidate=0'
+		}
 	};
 };
