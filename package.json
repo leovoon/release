@@ -2,7 +2,7 @@
 	"name": "release",
 	"version": "0.0.5",
 	"scripts": {
-		"dev": "vite",
+		"dev": "vite --port 3000",
 		"build": "vite build",
 		"package": "vite package",
 		"preview": "vite preview",
@@ -14,7 +14,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/adapter-netlify": "1.0.0-next.65",
-		"@sveltejs/kit": "next",
+		"@sveltejs/kit": "1.0.0-next.376",
 		"@types/html-minifier": "^4.0.2",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
 		"@typescript-eslint/parser": "^5.27.0",
@@ -35,7 +35,7 @@
 		"timeago-simple": "^1.2.4",
 		"tslib": "^2.3.1",
 		"typescript": "^4.7.2",
-		"vite": "^2.9.13",
+		"vite": "^3.0.0",
 		"vite-plugin-mkcert": "^1.7.2"
 	},
 	"dependencies": {
