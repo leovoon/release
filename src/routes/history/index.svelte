@@ -29,6 +29,7 @@
 	import type { Load } from '@sveltejs/kit';
 	import EmojiPicker from '$lib/components/EmojiPicker.svelte';
 	import { happyEmoji, hateEmoji } from '$lib/stores/localStorage';
+	import TextNoti from '$lib/components/TextNoti.svelte';
 
 	export let textList: Release[] = [];
 	let defaultListCount = 3;
@@ -114,12 +115,15 @@
 			{/key}</b
 		>
 		{#if deleting}
-			<p
-				transition:fly|local={{ y: 30 }}
-				class="opacity-40 flex-1 m-10 text-center"
-			>
-				Deleting...
-			</p>
+			<TextNoti text="Deleting..." />
+		{/if}
+
+		{#if pending}
+			<TextNoti text="Loading..." />
+		{/if}
+
+		{#if error}
+			<TextNoti text="Something went wrong. {error.message}" />
 		{/if}
 
 		{#if updatedlistLen > 0}
@@ -182,12 +186,5 @@
 		<p class="p-2">Nothing here.</p>
 	{/if}
 </section>
-{#if pending}
-	<p class="mt-10 text-center">Loading...</p>
-{/if}
-
-{#if error}
-	<p>Something went wrong...{error}</p>
-{/if}
 
 <a href="/" class="btn-gray "> ↩️ back </a>

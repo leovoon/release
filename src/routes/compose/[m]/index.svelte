@@ -56,7 +56,7 @@
 {#if error}
 	<p class="error">oops! {error.message}</p>
 {:else if posting}
-	<p>'📥 Saving...</p>
+	<p>📥 Saving...</p>
 {/if}
 
 <p>{saved ? '✅ Saved' : ''}</p>
