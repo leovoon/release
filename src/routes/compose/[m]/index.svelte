@@ -2,23 +2,24 @@
 	import { enhance } from '$lib/form';
 	import { clean } from '$lib/profane';
 	import { fade } from 'svelte/transition';
+	import Editor from 'cl-editor/src/Editor.svelte';
+
 	export let mood: string;
 	let error: Error | null;
 	let posting: boolean;
-	let saved = '';
+	let saved = false;
 	let textPreview = '';
 	let textSubmit = '';
+	let actions = ['b', 'i', 'u', 'strike', 'forecolor', 'backcolor', 'a'];
 
 	$: empty = !textPreview.length;
 	$: textPreview = clean(textSubmit);
 </script>
 
-<div class="big-text">{mood === 'happy' ? '正能量' : '负能量'}</div>
-
 {#if !empty}
 	<section>
 		<p class="p-2 opacity-40 text-right w-full min-h-20">preview</p>
-		<textarea in:fade class="preview" type="text" bind:value={textPreview} />
+		<div in:fade class="preview" type="text">{@html textPreview}</div>
 	</section>
 {/if}
 <form
@@ -26,33 +27,46 @@
 	method="post"
 	use:enhance={{
 		result: ({ form }) => {
-			(posting = false),
-				form.reset(),
-				(saved = 'Saved'),
-				setTimeout(() => (saved = ''), 2000);
+			posting = false;
+			form.reset();
+			textSubmit = '';
+			saved = true;
+			setTimeout(() => (saved = false), 2000);
 		},
 		pending: () => (posting = true),
 		error: ({ error }) => (error = error)
 	}}
-	class="grid"
+	class="grid w-full"
 >
-	<textarea
-		cols={30}
-		rows={8}
-		name="text"
-		placeholder="Speak your brains"
-		required
-		bind:value={textSubmit}
-	/>
-	<button type="submit" class="btn-light ml-auto"> 📥 Release</button>
+	<div class="relative max-w-28">
+		<div class="big-text">{mood === 'happy' ? '正能量' : '负能量'}</div>
+		<input type="text" name="text" class="hidden" bind:value={textPreview} />
+		<Editor
+			{actions}
+			on:change={({ detail }) => {
+				textSubmit = detail.replace(/<br>$/, '');
+			}}
+		/>
+	</div>
+	<button type="submit" class="btn-light ml-auto hover:bg-gray-200 rounded-sm">
+		🗑 Release</button
+	>
 </form>
 
 {#if error}
 	<p class="error">oops! {error.message}</p>
 {:else if posting}
-	<p>Saving...</p>
+	<p>'📥 Saving...</p>
 {/if}
 
-{saved}
+<p>{saved ? '✅ Saved' : ''}</p>
 
 <a href="/history" class="btn-gray">view saved</a>
+
+<style>
+	:global(.cl-content) {
+		min-height: 300px;
+		white-space: pre-wrap;
+		background-color: rgba(121, 119, 119, 0.1) !important;
+	}
+</style>

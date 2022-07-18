@@ -104,7 +104,7 @@
 >
 	<div class="flex p-2 items-center my-2">
 		<b class=" inline-flex items-center"
-			>Total: {#key updatedList}
+			>Count: {#key updatedList}
 				<span
 					class="h-max inline-flex ml-1"
 					in:fly={{ y: countIsSame ? 0 : -30, duration: 500, delay: 200 }}
@@ -113,6 +113,14 @@
 				</span>
 			{/key}</b
 		>
+		{#if deleting}
+			<p
+				transition:fly|local={{ y: 30 }}
+				class="opacity-40 flex-1 m-10 text-center"
+			>
+				Deleting...
+			</p>
+		{/if}
 
 		{#if updatedlistLen > 0}
 			{#if toggleEdit}
@@ -138,7 +146,7 @@
 					on:click={() => (toggleDate = !toggleDate)}
 				>
 					<p>
-						{clean(text)}
+						{@html clean(text)}
 						<sub class="uppercase"
 							>{mood === 'happy' ? $happyEmoji : $hateEmoji}</sub
 						>
@@ -165,7 +173,7 @@
 		{#if !allLoaded}
 			<button
 				on:click={() => handleViewAll()}
-				class="btn-light mt-4 w-full text-center">view all</button
+				class="btn-light mt-4 w-full text-center">view previous</button
 			>
 		{:else}
 			<p class="text-center mt-4 text-gray-300">-- end of lines --</p>
@@ -176,9 +184,6 @@
 </section>
 {#if pending}
 	<p class="mt-10 text-center">Loading...</p>
-{/if}
-{#if deleting}
-	<p class="mt-10 text-center">Deleting...</p>
 {/if}
 
 {#if error}
