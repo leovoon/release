@@ -42,13 +42,8 @@
 		"@prisma/client": "^4.0.0",
 		"cl-editor": "^2.3.0",
 		"html-minifier": "^4.0.0",
-		"sk-auth": "github:ohmree/sk-auth#fix-mergepath",
+		"sk-auth": "github:leovoon/sk-auth-fix-endpoint-method-renaming#main",
 		"svelte-local-storage-store": "^0.2.6"
 	},
-	"type": "module",
-	"pnpm": {
-		"patchedDependencies": {
-			"sk-auth@0.4.1": "patches/sk-auth@0.4.1.patch"
-		}
-	}
+	"type": "module"
 }

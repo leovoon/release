@@ -1,10 +1,5 @@
 lockfileVersion: 5.4
 
-patchedDependencies:
-  sk-auth@0.4.1:
-    hash: lnnnndz4dbxclvqnnkronkxev4
-    path: patches/sk-auth@0.4.1.patch
-
 specifiers:
   '@prisma/client': ^4.0.0
   '@sveltejs/adapter-auto': next
@@ -24,7 +19,7 @@ specifiers:
   prettier: ^2.6.2
   prettier-plugin-svelte: ^2.7.0
   prisma: ^4.0.0
-  sk-auth: github:ohmree/sk-auth#fix-mergepath
+  sk-auth: github:leovoon/sk-auth-fix-endpoint-method-renaming#main
   stream: ^0.0.2
   svelte: ^3.44.0
   svelte-check: ^2.7.1
@@ -41,7 +36,7 @@ dependencies:
   '@prisma/client': 4.0.0_prisma@4.0.0
   cl-editor: 2.3.0
   html-minifier: 4.0.0
-  sk-auth: github.com/ohmree/sk-auth/39430c4dd88155afdfab126086e9df2c7559cecc_lnnnndz4dbxclvqnnkronkxev4_unl763skuspkrbuewvlicjpk7e
+  sk-auth: github.com/leovoon/sk-auth-fix-endpoint-method-renaming/982b694b357980e26409fe709ae559c3914adb92_unl763skuspkrbuewvlicjpk7e
   svelte-local-storage-store: 0.2.6_svelte@3.49.0
 
 devDependencies:
@@ -2601,9 +2596,9 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  github.com/ohmree/sk-auth/39430c4dd88155afdfab126086e9df2c7559cecc_lnnnndz4dbxclvqnnkronkxev4_unl763skuspkrbuewvlicjpk7e:
-    resolution: {tarball: https://codeload.github.com/ohmree/sk-auth/tar.gz/39430c4dd88155afdfab126086e9df2c7559cecc}
-    id: github.com/ohmree/sk-auth/39430c4dd88155afdfab126086e9df2c7559cecc
+  github.com/leovoon/sk-auth-fix-endpoint-method-renaming/982b694b357980e26409fe709ae559c3914adb92_unl763skuspkrbuewvlicjpk7e:
+    resolution: {tarball: https://codeload.github.com/leovoon/sk-auth-fix-endpoint-method-renaming/tar.gz/982b694b357980e26409fe709ae559c3914adb92}
+    id: github.com/leovoon/sk-auth-fix-endpoint-method-renaming/982b694b357980e26409fe709ae559c3914adb92
     name: sk-auth
     version: 0.4.1
     prepare: true
@@ -2616,4 +2611,3 @@ packages:
       cookie: 0.4.2
       jsonwebtoken: 8.5.1
     dev: false
-    patched: true
