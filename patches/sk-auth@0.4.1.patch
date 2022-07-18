@@ -13,6 +13,28 @@ index 98c409ef3c5eb557a8e8bcd344e0cf33732d4fdc..f069201f3840819edb67c50b6a71bec0
      getSession: GetSession;
  }
  export {};
+diff --git a/dist/auth.esm.js b/dist/auth.esm.js
+index 2981b32aab44087240431c29624038b5eff78fb2..e481efe5b9316163cfbdcafb2cca5386564c5a56 100644
+--- a/dist/auth.esm.js
++++ b/dist/auth.esm.js
+@@ -4,7 +4,7 @@ import { join } from './path.esm.js';
+ 
+ class Auth {
+   constructor(config) {
+-    this.get = async (event) => {
++    this.GET = async (event) => {
+       const { url } = event;
+       if (url.pathname === this.getPath("csrf")) {
+         return { body: "1234" };
+@@ -18,7 +18,7 @@ class Auth {
+       }
+       return await this.handleEndpoint(event);
+     };
+-    this.post = async (event) => {
++    this.POST = async (event) => {
+       return await this.handleEndpoint(event);
+     };
+     this.getSession = async (event) => {
 diff --git a/dist/auth.js b/dist/auth.js
 index 49a673a0b4e0db5b2f786c986f90bf23da61d292..9ce9780a1433a3b66760ce3593bded283cb98807 100644
 --- a/dist/auth.js
@@ -35,3 +57,25 @@ index 49a673a0b4e0db5b2f786c986f90bf23da61d292..9ce9780a1433a3b66760ce3593bded28
        return await this.handleEndpoint(event);
      };
      this.getSession = async (event) => {
+diff --git a/src/auth.ts b/src/auth.ts
+index 383c7393f1a93af4dec4d1424928fe507f3578a5..8033fb2715eb9519587a7686cb52f1141321ec30 100644
+--- a/src/auth.ts
++++ b/src/auth.ts
+@@ -188,7 +188,7 @@ export class Auth {
+     };
+   }
+ 
+-  get: RequestHandler = async (event: RequestEvent): Promise<any> => {
++  GET: RequestHandler = async (event: RequestEvent): Promise<any> => {
+     const { url } = event;
+ 
+     if (url.pathname === this.getPath("csrf")) {
+@@ -205,7 +205,7 @@ export class Auth {
+     return await this.handleEndpoint(event);
+   };
+ 
+-  post: RequestHandler = async (event: RequestEvent) => {
++  POST: RequestHandler = async (event: RequestEvent) => {
+     return await this.handleEndpoint(event);
+   };
+ 

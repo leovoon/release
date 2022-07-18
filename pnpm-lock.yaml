@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 patchedDependencies:
   sk-auth@0.4.1:
-    hash: ursr7egiu3qpwlhtelmvb23jom
+    hash: lnnnndz4dbxclvqnnkronkxev4
     path: patches/sk-auth@0.4.1.patch
 
 specifiers:
@@ -14,6 +14,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.27.0
   '@typescript-eslint/parser': ^5.27.0
   autoprefixer: ^10.4.4
+  cl-editor: ^2.3.0
   eslint: ^8.16.0
   eslint-config-prettier: ^8.3.0
   eslint-plugin-svelte3: ^4.0.0
@@ -38,8 +39,9 @@ specifiers:
 
 dependencies:
   '@prisma/client': 4.0.0_prisma@4.0.0
+  cl-editor: 2.3.0
   html-minifier: 4.0.0
-  sk-auth: github.com/ohmree/sk-auth/39430c4dd88155afdfab126086e9df2c7559cecc_ursr7egiu3qpwlhtelmvb23jom_unl763skuspkrbuewvlicjpk7e
+  sk-auth: github.com/ohmree/sk-auth/39430c4dd88155afdfab126086e9df2c7559cecc_lnnnndz4dbxclvqnnkronkxev4_unl763skuspkrbuewvlicjpk7e
   svelte-local-storage-store: 0.2.6_svelte@3.49.0
 
 devDependencies:
@@ -805,6 +807,10 @@ packages:
     resolution: {integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==}
     engines: {node: '>=10'}
     dev: true
+
+  /cl-editor/2.3.0:
+    resolution: {integrity: sha512-TxTzuL3529Cmnxy4Q9djcKkZUZJLxuFvFomh6pfbAv72nTB4FCZUE7JhEF5PXeAWRstU+u6BD9ZTif9w0hGQfw==}
+    dev: false
 
   /clean-css/4.2.4:
     resolution: {integrity: sha512-EJUDT7nDVFDvaQgAo2G/PJvxmp1o/c6iXLbswsBbUFXi1Nr+AjA2cKmfbKDMjMvzEe75g3P6JkaDDAKk96A85A==}
@@ -2595,7 +2601,7 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  github.com/ohmree/sk-auth/39430c4dd88155afdfab126086e9df2c7559cecc_ursr7egiu3qpwlhtelmvb23jom_unl763skuspkrbuewvlicjpk7e:
+  github.com/ohmree/sk-auth/39430c4dd88155afdfab126086e9df2c7559cecc_lnnnndz4dbxclvqnnkronkxev4_unl763skuspkrbuewvlicjpk7e:
     resolution: {tarball: https://codeload.github.com/ohmree/sk-auth/tar.gz/39430c4dd88155afdfab126086e9df2c7559cecc}
     id: github.com/ohmree/sk-auth/39430c4dd88155afdfab126086e9df2c7559cecc
     name: sk-auth
