@@ -2,7 +2,7 @@ import type { RequestHandler } from '@sveltejs/kit';
 
 import { prisma } from '$lib/db/client';
 
-export const post: RequestHandler = async ({ request, params }) => {
+export const POST: RequestHandler = async ({ request, params }) => {
 	let createdText = {};
 	const form = await request.formData();
 	const text = form.get('text')?.toString();

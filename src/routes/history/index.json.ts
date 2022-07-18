@@ -1,7 +1,7 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { prisma } from '$lib/db/client';
 
-export const get: RequestHandler = async ({ url }) => {
+export const GET: RequestHandler = async ({ url }) => {
 	const allParam = url.searchParams.get('q') === 'all';
 	const textList = await prisma.release.findMany({
 		...(!allParam && { take: 3 }),
@@ -28,7 +28,7 @@ export const get: RequestHandler = async ({ url }) => {
 	};
 };
 
-export const del: RequestHandler = async ({ request }) => {
+export const DELETE: RequestHandler = async ({ request }) => {
 	const { id } = await request.json();
 
 	const deletedText = await prisma.release.delete({

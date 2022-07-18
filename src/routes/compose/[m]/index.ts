@@ -1,6 +1,6 @@
 import type { RequestHandler } from '@sveltejs/kit';
 
-export const get: RequestHandler = async ({ locals, params }) => {
+export const GET: RequestHandler = async ({ locals, params }) => {
 	const isLoggedIn = locals.user;
 	if (!isLoggedIn) {
 		return {
