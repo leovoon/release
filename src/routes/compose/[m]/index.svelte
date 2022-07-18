@@ -8,8 +8,10 @@
 	let error: Error | null;
 	let posting: boolean;
 	let saved = false;
+
 	let textPreview = '';
 	let textSubmit = '';
+	let validation = '';
 	let actions = ['b', 'i', 'u', 'strike', 'forecolor', 'backcolor', 'a'];
 
 	$: empty = !textPreview.length;
@@ -40,7 +42,13 @@
 >
 	<div class="relative max-w-28">
 		<div class="big-text">{mood === 'happy' ? '正能量' : '负能量'}</div>
-		<input type="text" name="text" class="hidden" bind:value={textPreview} />
+		<input
+			required
+			type="text"
+			name="text"
+			class="hidden"
+			bind:value={textPreview}
+		/>
 		<Editor
 			{actions}
 			on:change={({ detail }) => {
@@ -48,7 +56,11 @@
 			}}
 		/>
 	</div>
-	<button type="submit" class="btn-light ml-auto hover:bg-gray-200 rounded-sm">
+	<button
+		disabled={empty}
+		type="submit"
+		class="btn-light ml-auto hover:bg-gray-200 rounded-sm"
+	>
 		🗑 Release</button
 	>
 </form>
