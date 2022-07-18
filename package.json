@@ -14,7 +14,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/adapter-netlify": "1.0.0-next.65",
-		"@sveltejs/kit": "1.0.0-next.376",
+		"@sveltejs/kit": "1.0.0-next.377",
 		"@types/html-minifier": "^4.0.2",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
 		"@typescript-eslint/parser": "^5.27.0",
@@ -44,5 +44,10 @@
 		"sk-auth": "github:ohmree/sk-auth#fix-mergepath",
 		"svelte-local-storage-store": "^0.2.6"
 	},
-	"type": "module"
+	"type": "module",
+	"pnpm": {
+		"patchedDependencies": {
+			"sk-auth@0.4.1": "patches/sk-auth@0.4.1.patch"
+		}
+	}
 }
