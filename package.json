@@ -40,6 +40,7 @@
 	},
 	"dependencies": {
 		"@prisma/client": "^4.0.0",
+		"@prisma/engines-version": "4.6.0-43.69861a827f36ef2cd9436ce42d87399a304d67c3",
 		"cl-editor": "^2.3.0",
 		"html-minifier": "^4.0.0",
 		"sk-auth": "github:leovoon/sk-auth-fix-endpoint-method-renaming#main",

@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@prisma/client': ^4.0.0
+  '@prisma/engines-version': 4.6.0-43.69861a827f36ef2cd9436ce42d87399a304d67c3
   '@sveltejs/adapter-auto': next
   '@sveltejs/adapter-netlify': 1.0.0-next.65
   '@sveltejs/kit': 1.0.0-next.377
@@ -34,6 +35,7 @@ specifiers:
 
 dependencies:
   '@prisma/client': 4.0.0_prisma@4.5.0
+  '@prisma/engines-version': 4.6.0-43.69861a827f36ef2cd9436ce42d87399a304d67c3
   cl-editor: 2.3.0
   html-minifier: 4.0.0
   sk-auth: github.com/leovoon/sk-auth-fix-endpoint-method-renaming/a9280eb746ef5322676cd70a7bf58882c8c22ea1_unl763skuspkrbuewvlicjpk7e
@@ -313,6 +315,10 @@ packages:
 
   /@prisma/engines-version/3.16.0-49.da41d2bb3406da22087b849f0e911199ba4fbf11:
     resolution: {integrity: sha512-PiZhdD624SrYEjyLboI0X7OugNbxUzDJx9v/6ldTKuqNDVUCmRH/Z00XwDi/dgM4FlqOSO+YiUsSiSKjxxG8cw==}
+    dev: false
+
+  /@prisma/engines-version/4.6.0-43.69861a827f36ef2cd9436ce42d87399a304d67c3:
+    resolution: {integrity: sha512-ebULn/9KpG09MTpclZj0dNtlKF4apByVa/aGs/DtnqXQAlXt15kebaI3hVGyj6D0nStSD1PubBS+Nr22hHO20g==}
     dev: false
 
   /@prisma/engines/4.5.0:
