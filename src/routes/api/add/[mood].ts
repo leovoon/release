@@ -9,12 +9,19 @@ export const POST: RequestHandler = async ({ request, params }) => {
 	const mood = params.mood;
 
 	if (text && mood) {
-		createdText = await prisma.release.create({
-			data: {
-				text,
-				mood
-			}
-		});
+		try {
+			createdText = await prisma.release.create({
+				data: {
+					text,
+					mood
+				}
+			});
+		} catch (e) {
+			return {
+				status: 500,
+				body: 'Database is sleeping. Tell developer to wake it up.'
+			};
+		}
 	}
 
 	if (!createdText) {
