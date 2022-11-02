@@ -1,5 +1,3 @@
-[build.environment]
-  NPM_FLAGS = "--version"
 [build]
   # command = "npx pnpm i --store=node_modules/.pnpm-store && npx pnpm run build"  
   command = "npm run build"
