@@ -45,6 +45,8 @@
 		} else return data.messages
 	}
 
+	$: clean(data.messages)
+
 	function handleBeforeDelete(e: SubmitEvent) {
 		if (!window.confirm(`Are you sure to delete?`)) {
 			e.preventDefault()
@@ -139,15 +141,16 @@
 					on:keydown={handleClick}
 					on:click={handleClick}
 				>
+					{@html clean(text)}
+
 					<p>
-						{@html clean(text)}
-						<sub class="uppercase"
+						<sub class="uppercase sm:text-3xl text-2xl"
 							>{mood === 'happy' ? $happyEmoji : $hateEmoji}</sub
 						>
 					</p>
 
 					{#if toggleDate && createdAt}
-						<div class="flex">
+						<div class="flex min-w-fit">
 							<p
 								in:fly|local={{ x: -30 }}
 								out:fly|local={{ x: 30 }}
