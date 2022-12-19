@@ -13,7 +13,7 @@ export const load: PageServerLoad = async ({ setHeaders }) => {
 	})
 
 	setHeaders({
-		'cache-control': `max-age=300, s-maxage=300, stale-while-revalidate=5`
+		'cache-control': 'no-cache,'
 	})
 	return {
 		messages: firstQueryResults,
@@ -34,7 +34,7 @@ export const actions: Actions = {
 		if (!deletedText) throw error(400, 'Failed to delete')
 	},
 
-	getPreviousHistory: async ({ url, setHeaders }) => {
+	getPreviousHistory: async ({ url }) => {
 		const cursor = Number(url.searchParams.get('p'))
 		const nextQueryResults = await prisma.release.findMany({
 			take: 4,
@@ -48,9 +48,7 @@ export const actions: Actions = {
 		})
 		const myCursor = nextQueryResults[3]?.id
 		if (!myCursor) return fail(400)
-		setHeaders({
-			'cache-control': `max-age=300, s-maxage=300, stale-while-revalidate=5`
-		})
+
 		return {
 			messages: nextQueryResults,
 			nextPage: myCursor
