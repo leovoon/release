@@ -3,6 +3,7 @@ import { prisma } from '$lib/db/client'
 import { KEEP_ALIVE_API_SECRET } from '$env/static/private'
 
 export const POST: RequestHandler = async ({ request }) => {
+	console.log(request)
 	const keepAliveApiSecret = KEEP_ALIVE_API_SECRET
 
 	const requestHeaderXKeepAlive = request.headers.get('x-keep-alive-api-secret')
