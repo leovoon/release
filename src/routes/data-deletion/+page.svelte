@@ -1,5 +1,5 @@
 <script>
-	export const prerender = true;
+	export const prerender = true
 </script>
 
 <section class="mb-auto mt-20">

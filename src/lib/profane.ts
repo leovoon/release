@@ -16,22 +16,22 @@ const chineseList = [
 	'die',
 	'婊子',
 	'婊'
-];
-const placeHolder = '*';
+]
+const placeHolder = '*'
 
 export const replaceWord = (string: string, target: string) => {
-	let t = '';
+	let t = ''
 	for (let i = 0; i < target.length; i++) {
-		t += placeHolder;
+		t += placeHolder
 	}
-	return string.replace(new RegExp(target, 'g'), t);
-};
+	return string.replace(new RegExp(target, 'g'), t)
+}
 
 export const clean = function (string: string) {
 	for (let i = 0; i < chineseList.length; i++) {
 		if (string.indexOf(chineseList[i]) > -1) {
-			string = replaceWord(string, chineseList[i]);
+			string = replaceWord(string, chineseList[i])
 		}
 	}
-	return string;
-};
+	return string
+}

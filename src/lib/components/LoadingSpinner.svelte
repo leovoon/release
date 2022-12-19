@@ -1,5 +1,5 @@
 <script>
-	import { fade } from 'svelte/transition';
+	import { fade } from 'svelte/transition'
 </script>
 
 <div class="h-full z-40 w-full grid inset-0 fixed place-content-center ">

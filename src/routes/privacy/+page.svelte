@@ -1,7 +1,3 @@
-<script>
-	export const prerender = true;
-</script>
-
 <section class="h-80vh overflow-x-hidden overflow-y-scroll">
 	<h1>Privacy Policy</h1>
 	<p>Last updated: July 1, 2022</p>

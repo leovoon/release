@@ -3,14 +3,12 @@
 
 generator client {
     provider = "prisma-client-js"
-
-    previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
-    provider             = "mysql"
-    url                  = env("DATABASE_URL")
-    referentialIntegrity = "prisma"
+    provider     = "mysql"
+    url          = env("DATABASE_URL")
+    relationMode = "prisma"
 }
 
 model Release {
@@ -21,4 +19,26 @@ model Release {
 
     @@unique([id])
     @@index([id])
+}
+
+model User {
+    id              String    @id @unique @default(cuid())
+    provider_id     String    @unique
+    hashed_password String?
+    username        String?   @unique
+    session         Session[]
+    role            String    @default("user")
+
+    @@map("user")
+}
+
+model Session {
+    id           String @id @unique
+    user_id      String
+    expires      BigInt
+    idle_expires BigInt
+    user         User   @relation(references: [id], fields: [user_id], onDelete: Cascade)
+
+    @@index([user_id])
+    @@map("session")
 }
