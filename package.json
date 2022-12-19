@@ -12,18 +12,25 @@
 		"format": "prettier --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "next",
-		"@sveltejs/adapter-netlify": "1.0.0-next.65",
-		"@sveltejs/kit": "1.0.0-next.377",
-		"@types/html-minifier": "^4.0.2",
-		"@typescript-eslint/eslint-plugin": "^5.27.0",
-		"@typescript-eslint/parser": "^5.27.0",
-		"autoprefixer": "^10.4.4",
-		"eslint": "^8.16.0",
-		"eslint-config-prettier": "^8.3.0",
+		"@sveltejs/adapter-netlify": "^1.0.0",
+		"@sveltejs/kit": "latest",
+		"@typescript-eslint/eslint-plugin": "^5.46.1",
+		"@typescript-eslint/parser": "^5.46.1",
+		"autoprefixer": "^10.4.13",
+		"eslint": "^8.30.0",
+		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^4.0.0",
-		"postcss": "^8.4.12",
+		"postcss": "^8.4.20",
 		"postcss-load-config": "^3.1.4",
+<<<<<<< HEAD
+		"prettier": "^2.8.1",
+		"prettier-plugin-svelte": "^2.9.0",
+		"prisma": "^4.7.1",
+		"svelte": "^3.55.0",
+		"svelte-check": "^2.10.2",
+		"svelte-preprocess": "^4.10.7",
+		"tailwindcss": "^3.2.4",
+=======
 		"prettier": "^2.6.2",
 		"prettier-plugin-svelte": "^2.7.0",
 		"prisma": "^4.5.0",
@@ -32,18 +39,30 @@
 		"svelte-check": "^2.7.1",
 		"svelte-preprocess": "^4.10.5",
 		"tailwindcss": "^3.0.23",
+>>>>>>> main
 		"timeago-simple": "^1.2.4",
-		"tslib": "^2.3.1",
-		"typescript": "^4.7.2",
-		"vite": "^3.0.0",
-		"vite-plugin-mkcert": "^1.7.2"
+		"tslib": "^2.4.1",
+		"typescript": "^4.9.4",
+		"vite": "^4.0.2",
+		"vite-plugin-mkcert": "^1.10.1"
 	},
 	"dependencies": {
+<<<<<<< HEAD
+		"@auth/core": "^0.1.4",
+		"@auth/sveltekit": "^0.1.6",
+		"@lucia-auth/adapter-prisma": "^0.1.4",
+		"@lucia-auth/sveltekit": "^0.5.0",
+		"@prisma/client": "^4.7.1",
+		"@tinymce/tinymce-svelte": "^1.0.0",
+		"lucia-auth": "^0.3.1",
+		"svelte-french-toast": "^1.0.3",
+=======
 		"@prisma/client": "^4.0.0",
 		"@prisma/engines-version": "4.6.0-43.69861a827f36ef2cd9436ce42d87399a304d67c3",
 		"cl-editor": "^2.3.0",
 		"html-minifier": "^4.0.0",
 		"sk-auth": "github:leovoon/sk-auth-fix-endpoint-method-renaming#main",
+>>>>>>> main
 		"svelte-local-storage-store": "^0.2.6"
 	},
 	"type": "module"

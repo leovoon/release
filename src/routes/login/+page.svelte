@@ -1,22 +1,5 @@
-<script context="module" lang="ts">
-	import type { Session } from 'sk-auth';
-	export const load = ({ session }: Session) => {
-		const { user } = session;
-
-		// if user exists, redirect to homepage
-		if (user) {
-			return {
-				status: 302,
-				redirect: '/'
-			};
-		}
-
-		return {};
-	};
-</script>
-
 <script lang="ts">
-	import { pathnameBeforeLogin } from '$lib/stores/routeStore';
+	import { pathnameBeforeLogin } from '$lib/stores/routeStore'
 </script>
 
 <section class="m-auto w-full grid gap-6 place-items-center">

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
-	export let emojis: { happy: string[]; hate: string[] };
-	export let happyEmoji: string;
-	export let hateEmoji: string;
+	import { fly } from 'svelte/transition'
+	export let emojis: { happy: string[]; hate: string[] }
+	export let happyEmoji: string
+	export let hateEmoji: string
 </script>
 
 <div
