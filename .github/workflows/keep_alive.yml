@@ -8,6 +8,6 @@ jobs:
     steps:
       - name: Call endpoint to keep the database alive
         run: |
-          curl --request PUT \
+          curl --request POST \
           --url '${{ secrets.SITE_URL }}/api/keep-alive' \
           --header 'x-keep-alive-api-secret: ${{ secrets.KEEP_ALIVE_API_SECRET }}'
