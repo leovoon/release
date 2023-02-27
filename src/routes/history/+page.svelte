@@ -2,6 +2,7 @@
 	import type { Release } from '@prisma/client'
 	import { clean } from '$lib/profane'
 	import { fly } from 'svelte/transition'
+	import { flip } from 'svelte/animate'
 
 	import EditIconButton from '$lib/icons/EditIconButton.svelte'
 	import CloseButton from '$lib/icons/CloseButton.svelte'
@@ -13,44 +14,25 @@
 	import { enhance, type SubmitFunction } from '$app/forms'
 	import TextNoti from '$lib/components/TextNoti.svelte'
 	import toast, { Toaster } from 'svelte-french-toast'
+	import { invalidate, invalidateAll } from '$app/navigation'
 
 	export let data: PageServerData
 	export let form: ActionData
 	let defaultListCount = 3
 	let toggleEdit = false
 	let toggleDate = false
-	let loadMorePending = false
-	let noMoreMessages = false
 	const emojis = {
 		happy: ['😌', '😇', '🥰', '❤️', '💕'],
 		hate: ['🔥', '🤬', '😕', '😭', '😥']
 	}
 
+	$: updatedList = data.messages
 	$: toggleEditFn = () => (toggleEdit = !toggleEdit)
-	$: nextMessages = form?.messages as Release[]
-	$: nextPage = form?.nextPage ? form?.nextPage : data.nextResultCursor
-
-	$: updatedList = getMessages(nextMessages)
 	$: updatedlistLen = updatedList?.length
 	$: countIsSame = updatedList?.length === defaultListCount
 
 	function handleClick() {
 		toggleDate = !toggleDate
-	}
-
-	function getMessages(nextMessages?: Release[]): Release[] {
-		if (nextMessages && nextMessages.length > 0) {
-			updatedList = [...updatedList, ...nextMessages]
-			return updatedList
-		} else return data.messages
-	}
-
-	$: clean(data.messages)
-
-	function handleBeforeDelete(e: SubmitEvent) {
-		if (!window.confirm(`Are you sure to delete?`)) {
-			e.preventDefault()
-		}
 	}
 
 	const handleLoadMoreMessages: SubmitFunction = () => {
@@ -74,14 +56,19 @@
 		}
 	}
 
-	const handleDelete: SubmitFunction = () => {
-		toast.loading('Deleting...', { id: 'delete' })
+	const handleDelete: SubmitFunction = ({ cancel }) => {
+		if (window.confirm(`Are you sure to delete?`)) {
+			toast.loading('Deleting...', { id: 'delete' })
+		} else {
+			cancel()
+		}
 		return async ({ result, update }) => {
 			toast.dismiss('delete')
 			switch (result.type) {
 				case 'success':
-					update()
+					update({ reset: false })
 					toast.success('Deleted!')
+					invalidate((url) => url.pathname === '/history')
 					break
 				case 'failure':
 					break
@@ -117,24 +104,18 @@
 				</span>
 			{/key}</b
 		>
-
-		{#if updatedlistLen > 0}
-			{#if toggleEdit}
-				<CloseButton on:click={toggleEditFn} />
-			{:else}
-				<EditIconButton on:click={toggleEditFn} />
-			{/if}
-		{/if}
 	</div>
-	{#if updatedList?.length > 0}
+	{#if updatedList}
+		{#if toggleEdit}
+			<CloseButton on:click={toggleEditFn} />
+		{:else}
+			<EditIconButton on:click={toggleEditFn} />
+		{/if}
 		<ol class="relative">
-			{#each updatedList as { text, mood, createdAt, id }, i (i)}
+			{#each updatedList as { text, mood, createdAt, id } (id)}
 				<li
-					in:fly={{
-						x: -30,
-						duration: 600,
-						delay: i * 0.4
-					}}
+					animate:flip={{}}
+					in:fly={{ y: 100 }}
 					out:fly|local={{ x: 100 }}
 					class:happy={mood === 'happy'}
 					class:hate={mood === 'hate'}
@@ -161,8 +142,9 @@
 						</div>
 					{/if}
 					{#if toggleEdit}
+						<!-- svelte-ignore a11y-click-events-have-key-events -->
 						<form
-							on:submit={handleBeforeDelete}
+							on:click|stopPropagation
 							use:enhance={handleDelete}
 							action="?/deleteHistory&id={id}"
 							method="POST"
@@ -174,7 +156,7 @@
 			{/each}
 		</ol>
 
-		{#if !noMoreMessages}
+		<!-- {#if !noMoreMessages}
 			<form method="POST" use:enhance={handleLoadMoreMessages}>
 				<button
 					on:submit
@@ -182,7 +164,7 @@
 					class="btn-light mt-4 p-6 w-full text-center">view more</button
 				>
 			</form>
-		{/if}
+		{/if} -->
 	{:else}
 		<p class="p-2">Nothing here.</p>
 	{/if}

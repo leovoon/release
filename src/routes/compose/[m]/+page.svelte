@@ -3,13 +3,11 @@
 	import { page } from '$app/stores'
 	import type { ActionData, PageServerData } from './$types'
 	import { enhance, type SubmitFunction } from '$app/forms'
-	import { onMount, type ComponentType } from 'svelte'
 	import TextNoti from '$lib/components/TextNoti.svelte'
 	import toast, { Toaster } from 'svelte-french-toast'
-
+	import Editor from '@tinymce/tinymce-svelte'
 	export let data: PageServerData
 	export let form: ActionData
-	let Editor: ComponentType
 	let posting: boolean
 	let saved = false
 	let value = ''
@@ -23,10 +21,6 @@
 		branding: false,
 		elementpath: false
 	}
-
-	onMount(async () => {
-		Editor = (await import('@tinymce/tinymce-svelte')).default
-	})
 
 	$: sanitizedValue = clean(value)
 	$: happy = $page.params.m === 'happy'
@@ -71,7 +65,7 @@
 		<textarea hidden aria-hidden name="moodText" value={sanitizedValue} />
 
 		{#if Editor}
-			<svelte:component this={Editor} bind:value apiKey={data.apiKey} {conf} />
+			<Editor bind:value apiKey={data.apiKey} {conf} />
 		{:else}
 			<TextNoti
 				extraClass="absolute inset-0 m-auto text-xl"
@@ -79,7 +73,10 @@
 			/>
 		{/if}
 	</div>
-	<button type="submit" class="btn-light ml-auto hover:bg-gray-200 rounded-sm">
+	<button
+		type="submit"
+		class="btn-light ml-auto p-2 hover:bg-gray-200 rounded-sm"
+	>
 		🗑 Release</button
 	>
 </form>

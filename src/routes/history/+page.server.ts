@@ -12,9 +12,6 @@ export const load: PageServerLoad = async ({ setHeaders }) => {
 		]
 	})
 
-	setHeaders({
-		'cache-control': 'no-cache,'
-	})
 	return {
 		messages: firstQueryResults,
 		nextResultCursor: firstQueryResults[3].id
