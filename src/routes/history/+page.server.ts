@@ -1,10 +1,19 @@
-import { error, fail } from '@sveltejs/kit'
+import { error } from '@sveltejs/kit'
 import type { PageServerLoad, Actions } from './$types'
 import { prisma } from '$lib/db/client'
 
-export const load: PageServerLoad = async ({ setHeaders }) => {
+export const load: PageServerLoad = async () => {
 	const firstQueryResults = await prisma.release.findMany({
-		take: 4,
+		take: 5,
+		orderBy: [
+			{
+				createdAt: 'desc'
+			}
+		]
+	})
+
+	const moreMessages = prisma.release.findMany({
+		skip: 5,
 		orderBy: [
 			{
 				createdAt: 'desc'
@@ -14,7 +23,9 @@ export const load: PageServerLoad = async ({ setHeaders }) => {
 
 	return {
 		messages: firstQueryResults,
-		nextResultCursor: firstQueryResults[3].id
+		streamed: {
+			moreMessages
+		}
 	}
 }
 
@@ -29,26 +40,5 @@ export const actions: Actions = {
 			}
 		})
 		if (!deletedText) throw error(400, 'Failed to delete')
-	},
-
-	getPreviousHistory: async ({ url }) => {
-		const cursor = Number(url.searchParams.get('p'))
-		const nextQueryResults = await prisma.release.findMany({
-			take: 4,
-			skip: 1,
-			cursor: {
-				id: cursor
-			},
-			orderBy: {
-				createdAt: 'desc'
-			}
-		})
-		const myCursor = nextQueryResults[3]?.id
-		if (!myCursor) return fail(400)
-
-		return {
-			messages: nextQueryResults,
-			nextPage: myCursor
-		}
 	}
 }

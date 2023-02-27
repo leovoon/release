@@ -1,3 +1,4 @@
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <svg
 	on:click
 	class="w-8 h-8 ml-auto cursor-pointer transition opacity-30 fill-red-300 hover:opacity-100 hover:fill-red-500"
