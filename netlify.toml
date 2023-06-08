@@ -1,5 +1,5 @@
 [build]
-  command = "npx pnpm i --store=node_modules/.pnpm-store && npx pnpm run build"  
+  command = "npx pnpm i --store=node_modules/.pnpm-store && npx pnpm run build && prisma generate"  
   # command = "npm run build"
   publish = "build"
 
