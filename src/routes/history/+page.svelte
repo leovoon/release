@@ -57,7 +57,7 @@
 	</div>
 	{#if updatedList}
 		{#if editMode}
-			<CloseButton on:click={toggleEditFn} />
+			<CloseButton on:click={toggleEditFn} on:mousedown={toggleEditFn} />
 		{:else}
 			<EditIconButton on:click={toggleEditFn} />
 		{/if}
@@ -101,4 +101,4 @@
 	{/if}
 </section>
 
-<button on:click={() => history.back()} class="btn-gray p-4 "> ↩️ back </button>
+<button on:click={() => history.back()} class="btn-gray p-4"> ↩️ back </button>
