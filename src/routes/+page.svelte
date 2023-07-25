@@ -1,27 +1,43 @@
+<script lang="ts">
+	import { browser } from '$app/environment'
+	import { setContext } from 'svelte'
+	// Preload tinymce and save component in context
+	let Editor
+	if (browser) {
+		import('@tinymce/tinymce-svelte').then((module) => {
+			Editor = module.default
+			setContext('TinyEditor', Editor)
+		})
+	}
+</script>
+
 <header>
 	<figure>
 		<section class="img-bg" />
-		<h1 class="sm:text-4xl text-3xl grid place-items-center w-full mb-4 ">
+		<h1 class="sm:text-4xl text-3xl grid place-items-center w-full mb-4">
 			Spit your thoughts
 		</h1>
 	</figure>
 </header>
 
-<div class="flex flex-col gap-4 ">
+<div class="flex flex-col gap-4">
 	<a
-		data-sveltekit-preload-data
+		data-sveltekit-preload-data="hover"
 		href="/compose/happy"
 		class="btn-blue p-6 text-xl">I am happy that 💚</a
 	>
 	<a
-		data-sveltekit-preload-data
+		data-sveltekit-preload-data="hover"
 		href="/compose/hate"
 		class="btn-red p-6 text-xl"
 	>
 		I hate it when 🔥</a
 	>
-	<a data-sveltekit-preload-data href="/history" class="btn-light"
-		>view history</a
+	<a
+		data-sveltekit-preload-code="viewport"
+		data-sveltekit-preload-data="hover"
+		href="/history"
+		class="btn-light">view history</a
 	>
 </div>
 

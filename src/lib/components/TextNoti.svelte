@@ -5,7 +5,7 @@
 </script>
 
 <p
-	transition:fly|local={{ y: 30 }}
+	transition:fly={{ y: 30 }}
 	class="opacity-40 flex-1 m-10 text-center {extraClass}"
 >
 	{text}

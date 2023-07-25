@@ -2,12 +2,16 @@
 	import { clean } from '$lib/profane'
 	import { page } from '$app/stores'
 	import type { ActionData, PageServerData } from './$types'
-	import { enhance, type SubmitFunction } from '$app/forms'
+	import type { SubmitFunction } from '@sveltejs/kit'
+	import { enhance } from '$app/forms'
 	import TextNoti from '$lib/components/TextNoti.svelte'
 	import toast, { Toaster } from 'svelte-french-toast'
-	import Editor from '@tinymce/tinymce-svelte'
+	import { SvelteComponent, getContext, type ComponentType } from 'svelte'
+	import { browser } from '$app/environment'
+
 	export let data: PageServerData
 	export let form: ActionData
+
 	let posting: boolean
 	let saved = false
 	let value = ''
@@ -25,9 +29,19 @@
 	$: sanitizedValue = clean(value)
 	$: happy = $page.params.m === 'happy'
 
-	const handleAddMessage: SubmitFunction = ({ data, cancel, controller }) => {
+	let Editor: ComponentType<SvelteComponent> = getContext('TinyEditor')
+
+	if (browser) {
+		if (!Editor) {
+			import('@tinymce/tinymce-svelte').then((module) => {
+				Editor = module.default
+			})
+		}
+	}
+
+	const handleAddMessage: SubmitFunction = ({ data, cancel }) => {
 		const { moodText } = Object.fromEntries(data)
-		if (moodText.length < 1) {
+		if (moodText.toString().length < 1) {
 			toast.error('The text field is required')
 			cancel()
 			return
@@ -65,7 +79,7 @@
 		<textarea hidden aria-hidden name="moodText" value={sanitizedValue} />
 
 		{#if Editor}
-			<Editor bind:value apiKey={data.apiKey} {conf} />
+			<svelte:component this={Editor} bind:value apiKey={data.apiKey} {conf} />
 		{:else}
 			<TextNoti
 				extraClass="absolute inset-0 m-auto text-xl"
